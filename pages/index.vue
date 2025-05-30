@@ -1,167 +1,311 @@
 <template>
-  <div class="min-h-screen bg-gray-900">
+  <div class="min-h-screen bg-white">
     <!-- Header -->
-    <header class="bg-gray-800 border-b border-gray-700">
-      <div class="max-w-6xl mx-auto px-4 py-6">
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
-          <div>
-            <h1 class="text-3xl font-bold text-white">CheapAirbnbs</h1>
-            <p class="text-gray-400 mt-1">
-              Find the world's most affordable destinations
+          <div class="flex items-center">
+            <div class="flex items-center space-x-2">
+              <Icon name="heroicons:home" class="w-8 h-8 text-airbnb-rausch" />
+              <h1 class="text-2xl font-bold text-gray-900">cheapairbnbs</h1>
+            </div>
+            <p class="text-gray-500 ml-4 hidden sm:block">
+              Find affordable stays worldwide
             </p>
           </div>
           <button
             @click="refreshData"
             :disabled="loading"
-            class="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 px-4 py-2 rounded-lg text-white font-medium transition-colors"
+            class="bg-airbnb-rausch hover:bg-airbnb-rausch-dark disabled:bg-gray-300 px-6 py-3 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
           >
             <Icon
               name="heroicons:arrow-path"
-              class="w-4 h-4 inline mr-2"
+              class="w-4 h-4"
               :class="{ 'animate-spin': loading }"
             />
-            {{ loading ? "Updating..." : "Refresh Data" }}
+            <span>{{ loading ? "Updating..." : "Refresh Data" }}</span>
           </button>
         </div>
       </div>
     </header>
 
-    <!-- Main Content -->
-    <main class="max-w-6xl mx-auto px-4 py-8">
-      <!-- Search and Filter Section -->
-      <div class="mb-8">
-        <div
-          class="flex flex-col sm:flex-row gap-4 items-center justify-between"
-        >
-          <div class="relative flex-1 max-w-md">
-            <Icon
-              name="heroicons:magnifying-glass"
-              class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
-            />
-            <input
-              v-model="searchQuery"
-              type="text"
-              placeholder="Search countries..."
-              class="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <div class="flex gap-2">
-            <select
-              v-model="sortBy"
-              class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="averagePrice">Price</option>
-              <option value="cityName">City</option>
-              <option value="country">Country</option>
-            </select>
-            <button
-              @click="toggleSortOrder"
-              class="bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <Icon
-                :name="
-                  sortOrder === 'asc'
-                    ? 'heroicons:bars-arrow-up'
-                    : 'heroicons:bars-arrow-down'
-                "
-                class="w-5 h-5"
-              />
-            </button>
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-b from-white to-gray-50 py-12">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Discover the world's most
+            <span class="text-airbnb-rausch">affordable destinations</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Compare average Airbnb prices across cities worldwide and find your
+            next budget-friendly adventure
+          </p>
+        </div>
+
+        <!-- Search and Filter Section -->
+        <div class="max-w-4xl mx-auto mb-8">
+          <div
+            class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8"
+          >
+            <div class="flex flex-col lg:flex-row gap-6 items-end">
+              <!-- Search Input -->
+              <div class="flex-1">
+                <label class="block text-sm font-semibold text-gray-900 mb-2">
+                  Where do you want to explore?
+                </label>
+                <div class="relative">
+                  <Icon
+                    name="heroicons:magnifying-glass"
+                    class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"
+                  />
+                  <input
+                    v-model="searchQuery"
+                    type="text"
+                    placeholder="Search destinations..."
+                    class="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all"
+                  />
+                </div>
+              </div>
+
+              <!-- Sort Options -->
+              <div class="flex gap-3">
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">
+                    Sort by
+                  </label>
+                  <select
+                    v-model="sortBy"
+                    class="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all min-w-[120px]"
+                  >
+                    <option value="averagePrice">Price</option>
+                    <option value="cityName">City</option>
+                    <option value="country">Country</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">
+                    Order
+                  </label>
+                  <button
+                    @click="toggleSortOrder"
+                    class="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch transition-all"
+                  >
+                    <Icon
+                      :name="
+                        sortOrder === 'asc'
+                          ? 'heroicons:arrow-up'
+                          : 'heroicons:arrow-down'
+                      "
+                      class="w-5 h-5"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-8">
       <!-- Loading State -->
-      <div v-if="loading && !cities.length" class="text-center py-12">
-        <Icon
-          name="heroicons:arrow-path"
-          class="w-8 h-8 animate-spin text-blue-500 mx-auto mb-4"
-        />
-        <p class="text-gray-400">Loading city data...</p>
+      <div v-if="loading && !cities.length" class="text-center py-16">
+        <div
+          class="inline-flex items-center justify-center w-16 h-16 bg-airbnb-rausch rounded-full mb-6"
+        >
+          <Icon
+            name="heroicons:arrow-path"
+            class="w-8 h-8 animate-spin text-white"
+          />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+          Loading destinations
+        </h3>
+        <p class="text-gray-600">Fetching the latest pricing data...</p>
       </div>
 
       <!-- Error State -->
-      <div v-else-if="error" class="text-center py-12">
-        <Icon
-          name="heroicons:exclamation-triangle"
-          class="w-8 h-8 text-red-500 mx-auto mb-4"
-        />
-        <p class="text-red-400 mb-4">{{ error }}</p>
+      <div v-else-if="error" class="text-center py-16">
+        <div
+          class="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-6"
+        >
+          <Icon
+            name="heroicons:exclamation-triangle"
+            class="w-8 h-8 text-red-600"
+          />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+          Oops! Something went wrong
+        </h3>
+        <p class="text-gray-600 mb-6">{{ error }}</p>
         <button
           @click="fetchCities"
-          class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg text-white"
+          class="bg-airbnb-rausch hover:bg-airbnb-rausch-dark px-6 py-3 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           Try Again
         </button>
       </div>
 
       <!-- Cities Grid -->
-      <div
-        v-else-if="filteredCities.length"
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-      >
-        <div
-          v-for="city in filteredCities"
-          :key="city.id"
-          class="bg-gray-800 border border-gray-700 rounded-xl p-6 hover:border-gray-600 transition-colors"
-        >
-          <div class="flex justify-between items-start mb-4">
-            <div>
-              <h3 class="text-xl font-semibold text-white">
-                {{ city.cityName }}
-              </h3>
-              <p class="text-gray-400">{{ city.country }}</p>
-              <p
-                v-if="city.region !== city.country"
-                class="text-gray-500 text-sm"
-              >
-                {{ city.region }}
-              </p>
-            </div>
-            <div class="text-right">
-              <div class="text-2xl font-bold text-green-400">
-                ${{ city.averagePrice }}
-              </div>
-              <div class="text-gray-400 text-sm">per night</div>
-            </div>
+      <div v-else-if="filteredCities.length">
+        <!-- Results Header -->
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <h3 class="text-2xl font-bold text-gray-900">
+              {{ filteredCities.length }} destination{{
+                filteredCities.length !== 1 ? "s" : ""
+              }}
+              found
+            </h3>
+            <p class="text-gray-600 mt-1">Showing average nightly rates</p>
           </div>
+        </div>
 
-          <div class="border-t border-gray-700 pt-4">
-            <div class="flex justify-between text-sm mb-2">
-              <span class="text-gray-400">Total Listings</span>
-              <span class="text-white">{{
-                city.totalListings.toLocaleString()
-              }}</span>
+        <!-- Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          <div
+            v-for="city in filteredCities"
+            :key="city.id"
+            class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+          >
+            <!-- Card Image Placeholder -->
+            <div
+              class="h-64 bg-gradient-to-br from-airbnb-rausch to-airbnb-arches relative overflow-hidden"
+            >
+              <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+              <div class="absolute bottom-4 left-4 text-white">
+                <div
+                  class="inline-flex items-center space-x-2 bg-black bg-opacity-40 rounded-full px-3 py-1"
+                >
+                  <Icon name="heroicons:map-pin" class="w-4 h-4" />
+                  <span class="text-sm font-medium">{{ city.country }}</span>
+                </div>
+              </div>
             </div>
-            <div class="flex justify-between text-sm">
-              <span class="text-gray-400">Last Updated</span>
-              <span class="text-white">{{ formatDate(city.lastUpdated) }}</span>
+
+            <!-- Card Content -->
+            <div class="p-6">
+              <div class="flex justify-between items-start mb-4">
+                <div>
+                  <h4
+                    class="text-xl font-bold text-gray-900 group-hover:text-airbnb-rausch transition-colors"
+                  >
+                    {{ city.cityName }}
+                  </h4>
+                  <p class="text-gray-600">{{ city.region }}</p>
+                </div>
+                <div class="text-right">
+                  <div class="text-2xl font-bold text-airbnb-rausch">
+                    ${{ city.averagePrice }}
+                  </div>
+                  <div class="text-gray-500 text-sm">per night</div>
+                </div>
+              </div>
+
+              <!-- Stats -->
+              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
+                <div class="text-center">
+                  <div class="text-lg font-semibold text-gray-900">
+                    {{ city.totalListings.toLocaleString() }}
+                  </div>
+                  <div class="text-gray-500 text-sm">Total listings</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-lg font-semibold text-gray-900">
+                    {{ formatDate(city.lastUpdated) }}
+                  </div>
+                  <div class="text-gray-500 text-sm">Last updated</div>
+                </div>
+              </div>
+
+              <!-- Price Breakdown -->
+              <div
+                v-if="city.priceBreakdown"
+                class="mt-4 pt-4 border-t border-gray-100"
+              >
+                <p class="text-sm font-semibold text-gray-900 mb-2">
+                  Price breakdown
+                </p>
+                <div class="space-y-1 text-sm">
+                  <div
+                    v-if="city.priceBreakdown.entirePlace > 0"
+                    class="flex justify-between"
+                  >
+                    <span class="text-gray-600">Entire place</span>
+                    <span class="font-medium text-gray-900"
+                      >${{ city.priceBreakdown.entirePlace }}</span
+                    >
+                  </div>
+                  <div
+                    v-if="city.priceBreakdown.privateRoom > 0"
+                    class="flex justify-between"
+                  >
+                    <span class="text-gray-600">Private room</span>
+                    <span class="font-medium text-gray-900"
+                      >${{ city.priceBreakdown.privateRoom }}</span
+                    >
+                  </div>
+                  <div
+                    v-if="city.priceBreakdown.sharedRoom > 0"
+                    class="flex justify-between"
+                  >
+                    <span class="text-gray-600">Shared room</span>
+                    <span class="font-medium text-gray-900"
+                      >${{ city.priceBreakdown.sharedRoom }}</span
+                    >
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <!-- Empty State -->
-      <div v-else class="text-center py-12">
-        <Icon
-          name="heroicons:map-pin"
-          class="w-12 h-12 text-gray-500 mx-auto mb-4"
-        />
-        <p class="text-gray-400 mb-2">No cities found</p>
-        <p class="text-gray-500 text-sm">Try adjusting your search criteria</p>
+      <div v-else class="text-center py-16">
+        <div
+          class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-6"
+        >
+          <Icon name="heroicons:map-pin" class="w-8 h-8 text-gray-400" />
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">
+          No destinations found
+        </h3>
+        <p class="text-gray-600 mb-6">
+          Try adjusting your search criteria or filters
+        </p>
+        <button
+          @click="
+            searchQuery = '';
+            fetchCities();
+          "
+          class="text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium transition-colors"
+        >
+          Show all destinations
+        </button>
       </div>
 
-      <!-- Stats Footer -->
-      <div v-if="cities.length" class="mt-12 text-center">
-        <p class="text-gray-400">
+      <!-- Footer Info -->
+      <div
+        v-if="cities.length"
+        class="mt-16 text-center py-8 border-t border-gray-200"
+      >
+        <p class="text-gray-500">
           Showing {{ filteredCities.length }} of
-          {{ cities.length }} destinations • Data from
+          {{ cities.length }} destinations
+        </p>
+        <p class="text-gray-400 text-sm mt-2">
+          Data sourced from
           <a
             href="https://insideairbnb.com"
             target="_blank"
-            class="text-blue-400 hover:text-blue-300"
-            >Inside Airbnb</a
+            class="text-airbnb-rausch hover:text-airbnb-rausch-dark underline font-medium"
           >
+            Inside Airbnb
+          </a>
+          • Updated regularly for accuracy
         </p>
       </div>
     </main>
@@ -264,7 +408,6 @@ const formatDate = (dateString) => {
   return date.toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    year: "numeric",
   });
 };
 
@@ -273,3 +416,51 @@ onMounted(() => {
   fetchCities();
 });
 </script>
+
+<style scoped>
+/* Airbnb brand colors */
+.text-airbnb-rausch {
+  color: #ff5a5f;
+}
+
+.bg-airbnb-rausch {
+  background-color: #ff5a5f;
+}
+
+.bg-airbnb-rausch-dark {
+  background-color: #e7464b;
+}
+
+.hover\:bg-airbnb-rausch-dark:hover {
+  background-color: #e7464b;
+}
+
+.bg-airbnb-arches {
+  background-color: #fc642d;
+}
+
+.focus\:ring-airbnb-rausch:focus {
+  --tw-ring-color: #ff5a5f;
+}
+
+.focus\:border-airbnb-rausch:focus {
+  border-color: #ff5a5f;
+}
+
+.hover\:text-airbnb-rausch:hover {
+  color: #ff5a5f;
+}
+
+.hover\:text-airbnb-rausch-dark:hover {
+  color: #e7464b;
+}
+
+/* Custom gradient backgrounds for cards */
+.from-airbnb-rausch {
+  --tw-gradient-from: #ff5a5f;
+}
+
+.to-airbnb-arches {
+  --tw-gradient-to: #fc642d;
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gray-900 text-gray-100">
+  <div class="min-h-screen bg-white text-gray-900">
     <NuxtPage />
   </div>
 </template>
@@ -27,16 +27,35 @@ useHead({
 </script>
 
 <style>
-/* Global dark theme styles */
+/* Global Airbnb-inspired styles */
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
-  background-color: #111827;
-  color: #f9fafb;
+  font-family: "Cereal", "Circular", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
+  color: #222222;
+  line-height: 1.43;
 }
 
-/* Ensure smooth transitions */
+/* Smooth transitions for interactions */
 * {
   transition: all 0.2s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 </style>
