@@ -170,21 +170,6 @@
             :key="city.id"
             class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group"
           >
-            <!-- Card Image Placeholder -->
-            <div
-              class="h-64 bg-gradient-to-br from-airbnb-rausch to-airbnb-arches relative overflow-hidden"
-            >
-              <div class="absolute inset-0 bg-black bg-opacity-20"></div>
-              <div class="absolute bottom-4 left-4 text-white">
-                <div
-                  class="inline-flex items-center space-x-2 bg-black bg-opacity-40 rounded-full px-3 py-1"
-                >
-                  <Icon name="heroicons:map-pin" class="w-4 h-4" />
-                  <span class="text-sm font-medium">{{ city.country }}</span>
-                </div>
-              </div>
-            </div>
-
             <!-- Card Content -->
             <div class="p-6">
               <div class="flex justify-between items-start mb-4">
@@ -195,12 +180,13 @@
                     {{ city.cityName }}
                   </h4>
                   <p class="text-gray-600">{{ city.region }}</p>
+                  <p class="text-gray-500 text-sm">{{ city.country }}</p>
                 </div>
                 <div class="text-right">
                   <div class="text-2xl font-bold text-airbnb-rausch">
                     ${{ city.averagePrice }}
                   </div>
-                  <div class="text-gray-500 text-sm">per night</div>
+                  <div class="text-gray-500 text-sm mt-1">per night</div>
                 </div>
               </div>
 
@@ -462,5 +448,12 @@ onMounted(() => {
 
 .to-airbnb-arches {
   --tw-gradient-to: #fc642d;
+}
+
+/* Backdrop blur support for older browsers */
+@supports not (backdrop-filter: blur(4px)) {
+  .backdrop-blur-sm {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
 }
 </style>
