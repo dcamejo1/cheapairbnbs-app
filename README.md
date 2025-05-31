@@ -1,75 +1,102 @@
-# Nuxt Minimal Starter
+## CheapAirbnbs - Find Affordable Destinations Worldwide
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+CheapAirbnbs is a platform that aggregates Airbnb pricing data to help travelers find the most affordable destinations globally.
 
-## Setup
+### Features
 
-Make sure to install dependencies:
+- **Real-time Data**: Fetches data from [Inside Airbnb](https://insideairbnb.com/get-the-data/)
+- **Hard Pull System**: Download all CSV files locally for faster processing
+- **Smart Caching**: Cache-first approach to minimize requests to source servers
+- **Global Coverage**: 50+ destinations across continents
+- **Respectful Scraping**: 0.5s delays between requests, cache-first approach
+- **Price Breakdown**: Shows average prices by room type (entire place, private room, shared room)
+- **Search & Filter**: Find destinations by country, city, or region
+
+### How It Works
+
+**Option 1: Hard Pull (Recommended)**
+
+1. **Hard Pull**: Downloads all CSV files locally via `node scripts/hardPull.js pull`
+2. **Local Processing**: Processes data from local CSV files (fast & offline capable)
+3. **Cache Updates**: Updates cache from processed local data
+4. **Fast Operations**: Subsequent requests use cache as source of truth
+
+**Option 2: Traditional (Original)**
+
+1. **Cache-First Approach**: Checks local JSON cache before making any external requests
+2. **Respectful Fetching**: When fresh data is needed, adds 0.5s delays between requests
+3. **Data Processing**: Downloads, decompresses, and analyzes CSV data from Inside Airbnb
+4. **Smart Updates**: Only fetches data for destinations not in cache
+
+### Data Sources
+
+All data comes from [Inside Airbnb](https://insideairbnb.com/get-the-data/), a mission-driven project providing data about Airbnb's impact on residential communities.
+
+### Technical Implementation
+
+- **Frontend**: Vue 3 + Nuxt 3 with Tailwind CSS
+- **Backend**: Nitro server with API routes
+- **Caching**: JSON file-based caching system
+- **Data Processing**: Real-time CSV parsing with filtering and analysis
+- **Hard Pull System**: Local CSV storage for faster processing
+
+### API Endpoints
+
+**Local Data Processing (Recommended)**
+
+- `GET /api/cities/local` - Process cities from local CSV files
+- `GET /api/cities/local?refresh=true` - Force refresh from local files
+- `POST /api/data/hardpull` - Download all CSV files locally
+- `GET /api/data/status` - Check status of local CSV files
+
+**Traditional Remote Processing**
+
+- `GET /api/cities/test` - Get cached or fresh city data from remote sources
+- `GET /api/cities/test?refresh=true` - Force refresh from remote sources
+- `POST /api/data/update` - Hard refresh (clear cache + fetch all fresh data)
+
+### Development
 
 ```bash
-# npm
+# Install dependencies
 npm install
 
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
+# Start development server
 npm run dev
 
-# pnpm
-pnpm dev
+# Download all CSV files locally (recommended first step)
+node scripts/hardPull.js pull
 
-# yarn
-yarn dev
+# Check local file status
+node scripts/hardPull.js status
 
-# bun
-bun run dev
+# Test data sources
+node scripts/test-sources.js
 ```
 
-## Production
+### Hard Pull System
 
-Build the application for production:
+The Hard Pull system is the recommended approach for production use:
 
 ```bash
-# npm
-npm run build
+# Download all CSV files locally (one-time setup)
+node scripts/hardPull.js pull
 
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+# Then use the local endpoint for fast processing
+curl http://localhost:3000/api/cities/local
 ```
 
-Locally preview production build:
+See `scripts/README.md` for complete Hard Pull documentation.
 
-```bash
-# npm
-npm run preview
+### Cache Management
 
-# pnpm
-pnpm preview
+The application uses a smart caching system:
 
-# yarn
-yarn preview
+- **Cache File**: `server/data/cities-cache.json`
+- **Local CSV Files**: `server/data/csvs/` (when using hard pull)
+- **Cache Check**: Automatic on server startup and API requests
+- **Respectful Delays**: 0.5s between requests to avoid overwhelming servers
+- **Hard Refresh**: Clear cache and fetch all fresh data
+- **Partial Updates**: Only fetch missing destinations
 
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+This approach ensures fast loading times while being respectful to data sources.

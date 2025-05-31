@@ -26,3 +26,6 @@ yarn-error.log*
 .env
 .env.*
 !.env.example
+
+# Local CSV data files
+server/data/csvs/

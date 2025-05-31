@@ -13,18 +13,40 @@
               Find affordable stays worldwide
             </p>
           </div>
-          <button
-            @click="refreshData"
-            :disabled="loading"
-            class="bg-airbnb-rausch hover:bg-airbnb-rausch-dark disabled:bg-gray-300 px-6 py-3 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
-          >
-            <Icon
-              name="heroicons:arrow-path"
-              class="w-4 h-4"
-              :class="{ 'animate-spin': loading }"
-            />
-            <span>{{ loading ? "Updating..." : "Refresh Data" }}</span>
-          </button>
+          <div class="flex items-center space-x-3">
+            <button
+              @click="softUpdate"
+              :disabled="loading"
+              title="Add missing cities from sources without refreshing existing data"
+              class="bg-green-600 hover:bg-green-700 disabled:bg-gray-300 px-4 py-2 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
+            >
+              <Icon
+                name="heroicons:plus"
+                class="w-4 h-4"
+                :class="{ 'animate-spin': loading && loadingType === 'soft' }"
+              />
+              <span>{{
+                loading && loadingType === "soft" ? "Adding..." : "Add New"
+              }}</span>
+            </button>
+            <button
+              @click="hardUpdate"
+              :disabled="loading"
+              title="Refresh all city data with latest information from sources"
+              class="bg-airbnb-rausch hover:bg-airbnb-rausch-dark disabled:bg-gray-300 px-4 py-2 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
+            >
+              <Icon
+                name="heroicons:arrow-path"
+                class="w-4 h-4"
+                :class="{ 'animate-spin': loading && loadingType === 'hard' }"
+              />
+              <span>{{
+                loading && loadingType === "hard"
+                  ? "Refreshing..."
+                  : "Refresh All"
+              }}</span>
+            </button>
+          </div>
         </div>
       </div>
     </header>
@@ -291,7 +313,25 @@
           >
             Inside Airbnb
           </a>
-          • Updated regularly for accuracy
+          • Updated automatically every hour
+        </p>
+        <p v-if="dataInfo" class="text-gray-400 text-xs mt-1">
+          {{ dataInfo.cached ? "Using cached data" : "Fresh data fetched" }} •
+          Last processed: {{ formatDate(dataInfo.lastProcessed) }}
+          <span v-if="dataInfo.warning" class="text-orange-500">
+            • {{ dataInfo.warning }}</span
+          >
+          <br v-if="dataInfo.cacheInfo" />
+          <span
+            v-if="dataInfo.cacheInfo && dataInfo.cacheInfo.exists"
+            class="text-gray-300"
+          >
+            Cache: {{ dataInfo.cacheInfo.citiesCount }} cities • Last updated:
+            {{ formatDate(dataInfo.cacheInfo.lastUpdated) }}
+          </span>
+          <span v-else-if="dataInfo.cacheInfo" class="text-gray-300">
+            No cache file found
+          </span>
         </p>
       </div>
     </main>
@@ -318,6 +358,8 @@ const error = ref(null);
 const searchQuery = ref("");
 const sortBy = ref("averagePrice");
 const sortOrder = ref("asc");
+const dataInfo = ref(null);
+const loadingType = ref(null);
 
 // Computed properties
 const filteredCities = computed(() => {
@@ -360,8 +402,15 @@ const fetchCities = async () => {
   error.value = null;
 
   try {
-    const { data } = await $fetch("/api/cities/test");
-    cities.value = data;
+    const response = await $fetch("/api/cities/test");
+    cities.value = response.data;
+    dataInfo.value = {
+      cached: response.cached,
+      lastProcessed: response.lastProcessed,
+      warning: response.warning,
+      cacheInfo: response.cacheInfo,
+      forceRefresh: response.forceRefresh,
+    };
   } catch (err) {
     error.value = "Failed to load city data. Please try again.";
     console.error("Error fetching cities:", err);
@@ -370,18 +419,71 @@ const fetchCities = async () => {
   }
 };
 
-const refreshData = async () => {
+const softUpdate = async () => {
+  loadingType.value = "soft";
   loading.value = true;
   error.value = null;
 
   try {
-    await $fetch("/api/data/update", { method: "POST" });
-    await fetchCities();
+    console.log("🔄 Starting soft update...");
+
+    // First trigger the soft update endpoint
+    await $fetch("/api/data/update", {
+      method: "POST",
+      body: { type: "soft" },
+    });
+
+    // Then fetch the updated data
+    const response = await $fetch("/api/cities/test");
+    cities.value = response.data;
+    dataInfo.value = {
+      cached: response.cached,
+      lastProcessed: response.lastProcessed,
+      warning: response.warning,
+      cacheInfo: response.cacheInfo,
+    };
+
+    console.log("✅ Soft update completed successfully");
   } catch (err) {
     error.value = "Failed to update data. Please try again.";
     console.error("Error updating data:", err);
   } finally {
     loading.value = false;
+    loadingType.value = null;
+  }
+};
+
+const hardUpdate = async () => {
+  loadingType.value = "hard";
+  loading.value = true;
+  error.value = null;
+
+  try {
+    console.log("🔄 Starting hard refresh...");
+
+    // First trigger the hard refresh endpoint
+    await $fetch("/api/data/update", {
+      method: "POST",
+      body: { type: "hard" },
+    });
+
+    // Then fetch the updated data
+    const response = await $fetch("/api/cities/test");
+    cities.value = response.data;
+    dataInfo.value = {
+      cached: response.cached,
+      lastProcessed: response.lastProcessed,
+      warning: response.warning,
+      cacheInfo: response.cacheInfo,
+    };
+
+    console.log("✅ Hard refresh completed successfully");
+  } catch (err) {
+    error.value = "Failed to refresh data. Please try again.";
+    console.error("Error refreshing data:", err);
+  } finally {
+    loading.value = false;
+    loadingType.value = null;
   }
 };
 
@@ -390,10 +492,13 @@ const toggleSortOrder = () => {
 };
 
 const formatDate = (dateString) => {
+  if (!dateString) return "";
   const date = new Date(dateString);
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleString("en-US", {
     month: "short",
     day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 };
 

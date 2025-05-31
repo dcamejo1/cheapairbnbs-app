@@ -1,50 +1,45 @@
-import { testCities } from "../../data/testCities.js";
+import { CacheManager } from "../../utils/cacheManager.js";
 
-export default defineEventHandler(async (event) => {
+// Cache for processed data in memory
+let cachedCities = [];
+let lastProcessed = null;
+
+export default defineEventHandler(async () => {
   try {
-    // Get query parameters for filtering/sorting
-    const query = getQuery(event);
-    const { country, sortBy = "averagePrice", order = "asc" } = query;
+    const cacheManager = new CacheManager();
 
-    let cities = [...testCities];
-
-    // Filter by country if provided
-    if (country) {
-      const countryFilter = country.toLowerCase();
-      cities = cities.filter(
-        (city) =>
-          city.country.toLowerCase().includes(countryFilter) ||
-          city.cityName.toLowerCase().includes(countryFilter)
-      );
+    // Always try to load from cache first
+    if (cachedCities.length === 0) {
+      cachedCities = await cacheManager.getCachedCities();
+      if (cachedCities.length > 0) {
+        lastProcessed = Date.now();
+        console.log(`📦 Loaded ${cachedCities.length} cities from cache`);
+      }
     }
 
-    // Sort cities
-    cities.sort((a, b) => {
-      let aVal = a[sortBy];
-      let bVal = b[sortBy];
-
-      if (typeof aVal === "string") {
-        aVal = aVal.toLowerCase();
-        bVal = bVal.toLowerCase();
-      }
-
-      if (order === "desc") {
-        return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
-      } else {
-        return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
-      }
-    });
+    const cacheInfo = await cacheManager.getCacheInfo();
 
     return {
       success: true,
-      data: cities,
-      count: cities.length,
+      data: cachedCities,
+      cached: true,
+      cacheInfo: {
+        exists: cacheInfo.exists,
+        citiesCount: cacheInfo.citiesCount,
+        lastUpdated: cacheInfo.lastUpdated,
+        version: cacheInfo.version,
+      },
+      lastProcessed: lastProcessed
+        ? new Date(lastProcessed).toISOString()
+        : null,
+      count: cachedCities.length,
     };
   } catch (error) {
-    console.error("Error fetching test cities:", error);
+    console.error("❌ Error in cities API:", error);
+
     throw createError({
       statusCode: 500,
-      statusMessage: "Failed to fetch cities",
+      statusMessage: "Failed to load city data from cache: " + error.message,
     });
   }
 });
