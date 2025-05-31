@@ -34,11 +34,11 @@
         <!-- Search and Filter Section -->
         <div class="max-w-4xl mx-auto mb-8">
           <div
-            class="bg-white rounded-3xl shadow-xl border border-gray-200 p-8"
+            class="bg-white rounded-3xl shadow-xl border border-gray-200 p-4 sm:p-8"
           >
-            <div class="flex flex-col lg:flex-row gap-6 items-end">
+            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:items-end">
               <!-- Search Input -->
-              <div class="flex-1">
+              <div class="w-full lg:flex-1">
                 <label class="block text-sm font-semibold text-gray-900 mb-2">
                   Where do you want to explore?
                 </label>
@@ -51,33 +51,36 @@
                     v-model="searchQuery"
                     type="text"
                     placeholder="Search destinations..."
-                    class="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all"
+                    class="w-full pl-12 pr-4 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all text-base"
                   />
                 </div>
               </div>
 
               <!-- Sort Options -->
-              <div class="flex gap-3">
-                <div>
+              <div class="flex flex-col sm:flex-row lg:flex-row gap-3 sm:gap-4">
+                <div class="flex-1 sm:flex-none">
                   <label class="block text-sm font-semibold text-gray-900 mb-2">
                     Sort by
                   </label>
                   <select
                     v-model="sortBy"
-                    class="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all min-w-[120px]"
+                    class="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 sm:py-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all min-w-[120px] text-base"
                   >
                     <option value="averagePrice">Price</option>
                     <option value="cityName">City</option>
                     <option value="country">Country</option>
                   </select>
                 </div>
-                <div>
+                <div class="flex-1 sm:flex-none">
                   <label class="block text-sm font-semibold text-gray-900 mb-2">
                     Order
                   </label>
                   <button
                     @click="toggleSortOrder"
-                    class="bg-gray-50 border border-gray-200 rounded-2xl px-4 py-4 text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch transition-all"
+                    class="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 sm:py-4 text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch transition-all min-h-[48px] flex items-center justify-center"
+                    :aria-label="
+                      sortOrder === 'asc' ? 'Sort ascending' : 'Sort descending'
+                    "
                   >
                     <Icon
                       :name="
@@ -87,6 +90,9 @@
                       "
                       class="w-5 h-5"
                     />
+                    <span class="ml-2 sm:hidden lg:hidden">
+                      {{ sortOrder === "asc" ? "Low to High" : "High to Low" }}
+                    </span>
                   </button>
                 </div>
               </div>
