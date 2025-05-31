@@ -144,83 +144,88 @@
         </div>
 
         <!-- Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <div
             v-for="city in filteredCities"
             :key="city.id"
-            class="bg-white border border-gray-200 rounded-3xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer group"
+            class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer group"
           >
             <!-- Card Content -->
             <div class="p-6">
-              <div class="flex justify-between items-start mb-4">
-                <div>
+              <!-- Header with City Info and Price -->
+              <div class="flex justify-between items-start mb-6">
+                <div class="flex-1 min-w-0">
                   <h4
-                    class="text-xl font-bold text-gray-900 group-hover:text-airbnb-rausch transition-colors"
+                    class="text-xl font-bold text-gray-900 group-hover:text-airbnb-rausch transition-colors truncate"
                   >
                     {{ city.cityName }}
                   </h4>
-                  <p class="text-gray-600">{{ city.region }}</p>
-                  <p class="text-gray-500 text-sm">{{ city.country }}</p>
+                  <p class="text-gray-600 text-sm">{{ city.region }}</p>
+                  <p
+                    class="text-gray-500 text-xs uppercase tracking-wider font-medium"
+                  >
+                    {{ city.country }}
+                  </p>
                 </div>
-                <div class="text-right">
-                  <div class="text-2xl font-bold text-airbnb-rausch">
+                <div class="text-right ml-4">
+                  <div class="text-3xl font-bold text-airbnb-rausch">
                     ${{ city.averagePrice }}
                   </div>
-                  <div class="text-gray-500 text-sm mt-1">per night</div>
+                  <div class="text-gray-500 text-xs font-medium">per night</div>
                 </div>
               </div>
 
-              <!-- Stats -->
-              <div class="grid grid-cols-2 gap-4 pt-4 border-t border-gray-100">
-                <div class="text-center">
-                  <div class="text-lg font-semibold text-gray-900">
-                    {{ city.totalListings.toLocaleString() }}
-                  </div>
-                  <div class="text-gray-500 text-sm">Total listings</div>
-                </div>
-                <div class="text-center">
-                  <div class="text-lg font-semibold text-gray-900">
-                    {{ formatDate(city.lastUpdated) }}
-                  </div>
-                  <div class="text-gray-500 text-sm">Last updated</div>
-                </div>
+              <!-- Listings Count -->
+              <div
+                class="flex items-center justify-center py-3 bg-gray-50 rounded-xl mb-4"
+              >
+                <Icon
+                  name="heroicons:home"
+                  class="w-4 h-4 text-gray-400 mr-2"
+                />
+                <span class="text-sm font-medium text-gray-700">
+                  {{ city.totalListings.toLocaleString() }} listings available
+                </span>
               </div>
 
               <!-- Price Breakdown -->
-              <div
-                v-if="city.priceBreakdown"
-                class="mt-4 pt-4 border-t border-gray-100"
-              >
-                <p class="text-sm font-semibold text-gray-900 mb-2">
+              <div v-if="city.priceBreakdown" class="space-y-3">
+                <h5
+                  class="text-sm font-semibold text-gray-900 flex items-center"
+                >
+                  <Icon
+                    name="heroicons:currency-dollar"
+                    class="w-4 h-4 mr-1 text-gray-400"
+                  />
                   Price breakdown
-                </p>
-                <div class="space-y-1 text-sm">
+                </h5>
+                <div class="space-y-2">
                   <div
                     v-if="city.priceBreakdown.entirePlace > 0"
-                    class="flex justify-between"
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
-                    <span class="text-gray-600">Entire place</span>
-                    <span class="font-medium text-gray-900"
-                      >${{ city.priceBreakdown.entirePlace }}</span
-                    >
+                    <span class="text-sm text-gray-700">Entire place</span>
+                    <span class="text-sm font-semibold text-gray-900">
+                      ${{ city.priceBreakdown.entirePlace }}
+                    </span>
                   </div>
                   <div
                     v-if="city.priceBreakdown.privateRoom > 0"
-                    class="flex justify-between"
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
-                    <span class="text-gray-600">Private room</span>
-                    <span class="font-medium text-gray-900"
-                      >${{ city.priceBreakdown.privateRoom }}</span
-                    >
+                    <span class="text-sm text-gray-700">Private room</span>
+                    <span class="text-sm font-semibold text-gray-900">
+                      ${{ city.priceBreakdown.privateRoom }}
+                    </span>
                   </div>
                   <div
                     v-if="city.priceBreakdown.sharedRoom > 0"
-                    class="flex justify-between"
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
-                    <span class="text-gray-600">Shared room</span>
-                    <span class="font-medium text-gray-900"
-                      >${{ city.priceBreakdown.sharedRoom }}</span
-                    >
+                    <span class="text-sm text-gray-700">Shared room</span>
+                    <span class="text-sm font-semibold text-gray-900">
+                      ${{ city.priceBreakdown.sharedRoom }}
+                    </span>
                   </div>
                 </div>
               </div>
