@@ -58,28 +58,17 @@
 
               <!-- Sort Options -->
               <div class="flex flex-col sm:flex-row lg:flex-row gap-3 sm:gap-4">
-                <div class="flex-1 sm:flex-none">
+                <div class="w-full sm:w-auto">
                   <label class="block text-sm font-semibold text-gray-900 mb-2">
-                    Sort by
-                  </label>
-                  <select
-                    v-model="sortBy"
-                    class="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 sm:py-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all min-w-[120px] text-base"
-                  >
-                    <option value="averagePrice">Price</option>
-                    <option value="cityName">City</option>
-                    <option value="country">Country</option>
-                  </select>
-                </div>
-                <div class="flex-1 sm:flex-none">
-                  <label class="block text-sm font-semibold text-gray-900 mb-2">
-                    Order
+                    Sort by price
                   </label>
                   <button
                     @click="toggleSortOrder"
                     class="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 sm:py-4 text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch transition-all min-h-[48px] flex items-center justify-center"
-                    :aria-label="
-                      sortOrder === 'asc' ? 'Sort ascending' : 'Sort descending'
+                    :title="
+                      sortOrder === 'asc'
+                        ? 'Currently: Cheapest first. Click to show most expensive first.'
+                        : 'Currently: Most expensive first. Click to show cheapest first.'
                     "
                   >
                     <Icon
@@ -90,9 +79,6 @@
                       "
                       class="w-5 h-5"
                     />
-                    <span class="ml-2 sm:hidden lg:hidden">
-                      {{ sortOrder === "asc" ? "Low to High" : "High to Low" }}
-                    </span>
                   </button>
                 </div>
               </div>
@@ -389,10 +375,6 @@ const fetchCities = async () => {
   }
 };
 
-const toggleSortOrder = () => {
-  sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
-};
-
 const formatDate = (dateString) => {
   if (!dateString) return "";
   const date = new Date(dateString);
@@ -402,6 +384,10 @@ const formatDate = (dateString) => {
     hour: "2-digit",
     minute: "2-digit",
   });
+};
+
+const toggleSortOrder = () => {
+  sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
 };
 
 // Lifecycle
