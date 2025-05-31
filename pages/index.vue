@@ -13,40 +13,6 @@
               Find affordable stays worldwide
             </p>
           </div>
-          <div class="flex items-center space-x-3">
-            <button
-              @click="softUpdate"
-              :disabled="loading"
-              title="Add missing cities from sources without refreshing existing data"
-              class="bg-green-600 hover:bg-green-700 disabled:bg-gray-300 px-4 py-2 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
-            >
-              <Icon
-                name="heroicons:plus"
-                class="w-4 h-4"
-                :class="{ 'animate-spin': loading && loadingType === 'soft' }"
-              />
-              <span>{{
-                loading && loadingType === "soft" ? "Adding..." : "Add New"
-              }}</span>
-            </button>
-            <button
-              @click="hardUpdate"
-              :disabled="loading"
-              title="Refresh all city data with latest information from sources"
-              class="bg-airbnb-rausch hover:bg-airbnb-rausch-dark disabled:bg-gray-300 px-4 py-2 rounded-full text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed flex items-center space-x-2"
-            >
-              <Icon
-                name="heroicons:arrow-path"
-                class="w-4 h-4"
-                :class="{ 'animate-spin': loading && loadingType === 'hard' }"
-              />
-              <span>{{
-                loading && loadingType === "hard"
-                  ? "Refreshing..."
-                  : "Refresh All"
-              }}</span>
-            </button>
-          </div>
         </div>
       </div>
     </header>
@@ -351,15 +317,14 @@ useHead({
   ],
 });
 
-// Reactive state
+// Data
 const cities = ref([]);
 const loading = ref(false);
 const error = ref(null);
 const searchQuery = ref("");
 const sortBy = ref("averagePrice");
 const sortOrder = ref("asc");
-const dataInfo = ref(null);
-const loadingType = ref(null);
+const dataInfo = ref({});
 
 // Computed properties
 const filteredCities = computed(() => {
@@ -409,81 +374,12 @@ const fetchCities = async () => {
       lastProcessed: response.lastProcessed,
       warning: response.warning,
       cacheInfo: response.cacheInfo,
-      forceRefresh: response.forceRefresh,
     };
   } catch (err) {
     error.value = "Failed to load city data. Please try again.";
     console.error("Error fetching cities:", err);
   } finally {
     loading.value = false;
-  }
-};
-
-const softUpdate = async () => {
-  loadingType.value = "soft";
-  loading.value = true;
-  error.value = null;
-
-  try {
-    console.log("🔄 Starting soft update...");
-
-    // First trigger the soft update endpoint
-    await $fetch("/api/data/update", {
-      method: "POST",
-      body: { type: "soft" },
-    });
-
-    // Then fetch the updated data
-    const response = await $fetch("/api/cities/test");
-    cities.value = response.data;
-    dataInfo.value = {
-      cached: response.cached,
-      lastProcessed: response.lastProcessed,
-      warning: response.warning,
-      cacheInfo: response.cacheInfo,
-    };
-
-    console.log("✅ Soft update completed successfully");
-  } catch (err) {
-    error.value = "Failed to update data. Please try again.";
-    console.error("Error updating data:", err);
-  } finally {
-    loading.value = false;
-    loadingType.value = null;
-  }
-};
-
-const hardUpdate = async () => {
-  loadingType.value = "hard";
-  loading.value = true;
-  error.value = null;
-
-  try {
-    console.log("🔄 Starting hard refresh...");
-
-    // First trigger the hard refresh endpoint
-    await $fetch("/api/data/update", {
-      method: "POST",
-      body: { type: "hard" },
-    });
-
-    // Then fetch the updated data
-    const response = await $fetch("/api/cities/test");
-    cities.value = response.data;
-    dataInfo.value = {
-      cached: response.cached,
-      lastProcessed: response.lastProcessed,
-      warning: response.warning,
-      cacheInfo: response.cacheInfo,
-    };
-
-    console.log("✅ Hard refresh completed successfully");
-  } catch (err) {
-    error.value = "Failed to refresh data. Please try again.";
-    console.error("Error refreshing data:", err);
-  } finally {
-    loading.value = false;
-    loadingType.value = null;
   }
 };
 
