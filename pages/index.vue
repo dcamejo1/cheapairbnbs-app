@@ -60,6 +60,20 @@
               <div class="flex flex-col sm:flex-row lg:flex-row gap-3 sm:gap-4">
                 <div class="w-full sm:w-auto">
                   <label class="block text-sm font-semibold text-gray-900 mb-2">
+                    Room type
+                  </label>
+                  <select
+                    v-model="roomTypeFilter"
+                    class="w-full sm:w-auto bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 sm:py-4 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all min-w-[140px] text-base"
+                  >
+                    <option value="averagePrice">All types (avg)</option>
+                    <option value="entirePlace">Entire place</option>
+                    <option value="privateRoom">Private room</option>
+                    <option value="sharedRoom">Shared room</option>
+                  </select>
+                </div>
+                <div class="w-full sm:w-auto">
+                  <label class="block text-sm font-semibold text-gray-900 mb-2">
                     Sort by price
                   </label>
                   <button
@@ -169,9 +183,15 @@
                 </div>
                 <div class="text-right ml-4">
                   <div class="text-3xl font-bold text-airbnb-rausch">
-                    ${{ city.averagePrice }}
+                    ${{ getDisplayPrice(city) }}
                   </div>
-                  <div class="text-gray-500 text-xs font-medium">per night</div>
+                  <div class="text-gray-500 text-xs font-medium">
+                    {{
+                      roomTypeFilter === "averagePrice"
+                        ? "average per night"
+                        : getRoomTypeLabel(roomTypeFilter) + " per night"
+                    }}
+                  </div>
                 </div>
               </div>
 
@@ -319,9 +339,9 @@ const cities = ref([]);
 const loading = ref(false);
 const error = ref(null);
 const searchQuery = ref("");
-const sortBy = ref("averagePrice");
 const sortOrder = ref("asc");
 const dataInfo = ref({});
+const roomTypeFilter = ref("averagePrice");
 
 // Computed properties
 const filteredCities = computed(() => {
@@ -338,20 +358,39 @@ const filteredCities = computed(() => {
     );
   }
 
-  // Sort
+  // Sort by selected room type
   filtered.sort((a, b) => {
-    let aVal = a[sortBy.value];
-    let bVal = b[sortBy.value];
+    let aVal, bVal;
+    let aHasData = true;
+    let bHasData = true;
 
-    if (typeof aVal === "string") {
-      aVal = aVal.toLowerCase();
-      bVal = bVal.toLowerCase();
+    // Get the price based on selected room type filter
+    if (roomTypeFilter.value === "averagePrice") {
+      aVal = a.averagePrice;
+      bVal = b.averagePrice;
+    } else {
+      // Check if cities have data for the selected room type
+      aVal = a.priceBreakdown?.[roomTypeFilter.value];
+      bVal = b.priceBreakdown?.[roomTypeFilter.value];
+
+      aHasData = aVal !== undefined && aVal > 0;
+      bHasData = bVal !== undefined && bVal > 0;
+
+      // If no data, use 0 for sorting but we'll handle placement separately
+      aVal = aHasData ? aVal : 0;
+      bVal = bHasData ? bVal : 0;
     }
 
+    // Always put cities without data at the end
+    if (!aHasData && !bHasData) return 0;
+    if (!aHasData) return 1;
+    if (!bHasData) return -1;
+
+    // Normal sorting for cities with data
     if (sortOrder.value === "asc") {
-      return aVal < bVal ? -1 : aVal > bVal ? 1 : 0;
+      return aVal - bVal;
     } else {
-      return aVal > bVal ? -1 : aVal < bVal ? 1 : 0;
+      return bVal - aVal;
     }
   });
 
@@ -393,6 +432,28 @@ const formatDate = (dateString) => {
 
 const toggleSortOrder = () => {
   sortOrder.value = sortOrder.value === "asc" ? "desc" : "asc";
+};
+
+const getDisplayPrice = (city) => {
+  if (roomTypeFilter.value === "averagePrice") {
+    return city.averagePrice;
+  } else {
+    const price = city.priceBreakdown?.[roomTypeFilter.value];
+    return price !== undefined && price > 0 ? price : "N/A";
+  }
+};
+
+const getRoomTypeLabel = (type) => {
+  switch (type) {
+    case "entirePlace":
+      return "Entire place";
+    case "privateRoom":
+      return "Private room";
+    case "sharedRoom":
+      return "Shared room";
+    default:
+      return "Average price";
+  }
 };
 
 // Lifecycle
