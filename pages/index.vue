@@ -217,20 +217,98 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-6 py-8">
-      <!-- Loading State -->
-      <div v-if="loading && !cities.length" class="text-center py-16">
-        <div
-          class="inline-flex items-center justify-center w-16 h-16 bg-airbnb-rausch rounded-full mb-6"
-        >
-          <Icon
-            name="heroicons:arrow-path"
-            class="w-8 h-8 animate-spin text-white"
-          />
+      <!-- Loading State with Skeleton Cards -->
+      <div v-if="loading || (!cities.length && !error)">
+        <!-- Skeleton Results Header -->
+        <div class="flex justify-between items-center mb-8">
+          <div>
+            <div class="h-8 bg-gray-200 rounded w-48 mb-2 animate-pulse"></div>
+            <div class="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
+          </div>
         </div>
-        <h3 class="text-xl font-semibold text-gray-900 mb-2">
-          Loading destinations
-        </h3>
-        <p class="text-gray-600">Fetching the latest pricing data...</p>
+
+        <!-- Skeleton Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <div
+            v-for="n in 12"
+            :key="n"
+            class="bg-white border border-gray-200 rounded-2xl overflow-hidden"
+          >
+            <!-- Skeleton Card Content -->
+            <div class="p-6">
+              <!-- Skeleton Header with City Info and Price -->
+              <div class="flex justify-between items-start mb-6">
+                <div class="flex-1 min-w-0">
+                  <!-- City name skeleton -->
+                  <div
+                    class="h-6 bg-gray-200 rounded w-3/4 mb-2 animate-pulse"
+                  ></div>
+                  <!-- Region skeleton -->
+                  <div
+                    class="h-4 bg-gray-200 rounded w-1/2 mb-1 animate-pulse"
+                  ></div>
+                  <!-- Country skeleton -->
+                  <div
+                    class="h-3 bg-gray-200 rounded w-1/3 animate-pulse"
+                  ></div>
+                </div>
+                <div class="text-right ml-4">
+                  <!-- Price skeleton -->
+                  <div
+                    class="h-8 bg-gray-200 rounded w-16 mb-1 animate-pulse"
+                  ></div>
+                  <div class="h-3 bg-gray-200 rounded w-20 animate-pulse"></div>
+                </div>
+              </div>
+
+              <!-- Skeleton Listings Count -->
+              <div
+                class="flex items-center justify-center py-3 bg-gray-50 rounded-xl mb-4"
+              >
+                <div class="h-4 bg-gray-200 rounded w-32 animate-pulse"></div>
+              </div>
+
+              <!-- Skeleton Price Breakdown -->
+              <div class="space-y-3">
+                <div
+                  class="h-4 bg-gray-200 rounded w-24 mb-3 animate-pulse"
+                ></div>
+                <div class="space-y-2">
+                  <div
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
+                  >
+                    <div
+                      class="h-3 bg-gray-200 rounded w-20 animate-pulse"
+                    ></div>
+                    <div
+                      class="h-3 bg-gray-200 rounded w-12 animate-pulse"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
+                  >
+                    <div
+                      class="h-3 bg-gray-200 rounded w-16 animate-pulse"
+                    ></div>
+                    <div
+                      class="h-3 bg-gray-200 rounded w-12 animate-pulse"
+                    ></div>
+                  </div>
+                  <div
+                    class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
+                  >
+                    <div
+                      class="h-3 bg-gray-200 rounded w-18 animate-pulse"
+                    ></div>
+                    <div
+                      class="h-3 bg-gray-200 rounded w-12 animate-pulse"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- Error State -->
@@ -256,7 +334,7 @@
       </div>
 
       <!-- Cities Grid -->
-      <div v-else-if="filteredCities.length">
+      <div v-else-if="filteredCities.length && !loading">
         <!-- Results Header -->
         <div class="flex justify-between items-center mb-8">
           <div>
@@ -368,7 +446,7 @@
       </div>
 
       <!-- Empty State -->
-      <div v-else class="text-center py-16">
+      <div v-else-if="!loading && cities.length > 0" class="text-center py-16">
         <div
           class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-6"
         >
@@ -390,7 +468,7 @@
 
       <!-- Footer Info -->
       <div
-        v-if="cities.length"
+        v-if="cities.length && !loading"
         class="mt-16 text-center py-8 border-t border-gray-200"
       >
         <p class="text-gray-500">
@@ -446,7 +524,7 @@ useHead({
 
 // Data
 const cities = ref([]);
-const loading = ref(false);
+const loading = ref(true);
 const error = ref(null);
 const searchQuery = ref("");
 const sortOrder = ref("asc");
