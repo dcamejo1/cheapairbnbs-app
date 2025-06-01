@@ -36,9 +36,9 @@
           <div
             class="bg-white rounded-3xl shadow-xl border border-gray-200 p-4 sm:p-8"
           >
-            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:items-end">
+            <div class="flex flex-col gap-4 sm:gap-6">
               <!-- Search Input -->
-              <div class="w-full lg:flex-1">
+              <div class="w-full">
                 <label class="block text-sm font-semibold text-gray-900 mb-2">
                   Where do you want to explore?
                 </label>
@@ -53,6 +53,80 @@
                     placeholder="Search destinations..."
                     class="w-full pl-12 pr-4 py-3 sm:py-4 bg-gray-50 border border-gray-200 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all text-base"
                   />
+                </div>
+              </div>
+
+              <!-- Continent Filter -->
+              <div class="w-full">
+                <label class="block text-sm font-semibold text-gray-900 mb-3">
+                  Continents
+                </label>
+                <div
+                  class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+                >
+                  <label
+                    v-for="continent in availableContinents"
+                    :key="continent.value"
+                    class="flex items-center space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 cursor-pointer transition-all"
+                    :class="{
+                      'bg-airbnb-rausch border-airbnb-rausch text-white':
+                        selectedContinents.includes(continent.value),
+                    }"
+                  >
+                    <input
+                      type="checkbox"
+                      :value="continent.value"
+                      v-model="selectedContinents"
+                      class="sr-only"
+                    />
+                    <div
+                      class="w-4 h-4 border-2 rounded flex items-center justify-center transition-all"
+                      :class="{
+                        'border-white bg-white': selectedContinents.includes(
+                          continent.value
+                        ),
+                        'border-gray-400 bg-transparent':
+                          !selectedContinents.includes(continent.value),
+                      }"
+                    >
+                      <Icon
+                        v-if="selectedContinents.includes(continent.value)"
+                        name="heroicons:check"
+                        class="w-3 h-3 text-airbnb-rausch"
+                      />
+                    </div>
+                    <span
+                      class="text-sm font-medium"
+                      :class="{
+                        'text-white': selectedContinents.includes(
+                          continent.value
+                        ),
+                        'text-gray-700': !selectedContinents.includes(
+                          continent.value
+                        ),
+                      }"
+                    >
+                      {{ continent.label }}
+                    </span>
+                  </label>
+                </div>
+                <div class="flex justify-between items-center mt-3">
+                  <p class="text-xs text-gray-500">
+                    {{
+                      selectedContinents.length === 0
+                        ? "All continents"
+                        : `${selectedContinents.length} continent${
+                            selectedContinents.length !== 1 ? "s" : ""
+                          } selected`
+                    }}
+                  </p>
+                  <button
+                    v-if="selectedContinents.length > 0"
+                    @click="clearContinentFilter"
+                    class="text-xs text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium"
+                  >
+                    Clear all
+                  </button>
                 </div>
               </div>
 
@@ -270,6 +344,7 @@
         <button
           @click="
             searchQuery = '';
+            selectedContinents = [];
             fetchCities();
           "
           class="text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium transition-colors"
@@ -342,6 +417,18 @@ const searchQuery = ref("");
 const sortOrder = ref("asc");
 const dataInfo = ref({});
 const roomTypeFilter = ref("averagePrice");
+const selectedContinents = ref([]);
+
+// Available continents for the filter
+const availableContinents = [
+  { value: "north america", label: "North America" },
+  { value: "latin america", label: "Latin America" },
+  { value: "europe", label: "Europe" },
+  { value: "africa", label: "Africa" },
+  { value: "asia", label: "Asia" },
+  { value: "oceania", label: "Oceania" },
+  { value: "middle east", label: "Middle East" },
+];
 
 // Computed properties
 const filteredCities = computed(() => {
@@ -356,6 +443,20 @@ const filteredCities = computed(() => {
         city.country.toLowerCase().includes(query) ||
         city.region.toLowerCase().includes(query)
     );
+  }
+
+  // Filter by selected continents
+  if (selectedContinents.value.length > 0) {
+    filtered = filtered.filter((city) => {
+      // Check if city has continents data and if any of its continents match the selected ones
+      return (
+        city.continents &&
+        Array.isArray(city.continents) &&
+        city.continents.some((continent) =>
+          selectedContinents.value.includes(continent)
+        )
+      );
+    });
   }
 
   // Sort by selected room type
@@ -454,6 +555,10 @@ const getRoomTypeLabel = (type) => {
     default:
       return "Average price";
   }
+};
+
+const clearContinentFilter = () => {
+  selectedContinents.value = [];
 };
 
 // Lifecycle

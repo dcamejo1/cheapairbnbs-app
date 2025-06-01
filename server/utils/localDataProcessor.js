@@ -230,6 +230,7 @@ export class LocalDataProcessor {
       country: source.country,
       region: source.region,
       currency: currency,
+      continents: source.continents || [],
       localAveragePrice: localAveragePrice, // Keep original for debugging
       averagePrice: Math.round(averagePrice * 100) / 100, // USD converted
       totalListings: validListings.length,
