@@ -36,7 +36,7 @@ All data comes from [Inside Airbnb](https://insideairbnb.com/get-the-data/), a m
 
 - **Frontend**: Vue 3 + Nuxt 3 with Tailwind CSS
 - **Backend**: Nitro server with API routes
-- **Caching**: JSON file-based caching system
+- **Caching**: JSON file-based caching system with static file serving
 - **Data Processing**: Real-time CSV parsing with filtering and analysis
 - **Hard Pull System**: Local CSV storage for faster processing
 
@@ -44,7 +44,7 @@ All data comes from [Inside Airbnb](https://insideairbnb.com/get-the-data/), a m
 
 **Public API (Frontend Access)**
 
-- `GET /api/cities/test` - Get cached city data (read-only, secure)
+- `GET /cities-cache.json` - Static JSON file with all city data (fast, cached)
 
 **Administrative Operations (CLI Only)**
 
@@ -85,8 +85,11 @@ node scripts/hardPull.js status
 # Populate cache from local files
 node scripts/cacheManager.js repopulate
 
-# Test the API
-curl http://localhost:3000/api/cities/test
+# Sync cache to public folder (for static serving)
+npm run sync-cache
+
+# Test the static JSON endpoint
+curl http://localhost:3000/cities-cache.json
 ```
 
 ### Production Deployment Workflow
@@ -98,12 +101,16 @@ node scripts/hardPull.js pull
 # 2. Process data into cache
 node scripts/cacheManager.js repopulate
 
-# 3. Deploy application (cache and local CSVs included)
-# Frontend will use GET /api/cities/test for fast cached data
+# 3. Build application (automatically syncs cache to public folder)
+npm run build
 
-# 4. For updates (when needed):
+# 4. Deploy application
+# Frontend will use GET /cities-cache.json for instant data loading
+
+# 5. For updates (when needed):
 node scripts/hardPull.js pullMissing      # Get new destinations
 node scripts/cacheManager.js updateMissing # Add them to cache
+npm run build                             # Rebuild with updated data
 ```
 
 ### Hard Pull System

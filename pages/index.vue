@@ -540,13 +540,23 @@ const fetchCities = async () => {
   error.value = null;
 
   try {
-    const response = await $fetch("/api/cities/test");
-    cities.value = response.data;
+    // Fetch from static JSON file instead of API
+    const response = await $fetch("/cities-cache.json");
+
+    // The static file has the data directly in the 'cities' array
+    cities.value = response.cities;
+
+    // Set data info from the cached file metadata
     dataInfo.value = {
-      cached: response.cached,
-      lastProcessed: response.lastProcessed,
-      warning: response.warning,
-      cacheInfo: response.cacheInfo,
+      cached: true,
+      lastProcessed: response.lastUpdated,
+      warning: null,
+      cacheInfo: {
+        exists: true,
+        citiesCount: response.citiesCount,
+        lastUpdated: response.lastUpdated,
+        version: response.version,
+      },
     };
   } catch (err) {
     error.value = "Failed to load city data. Please try again.";
