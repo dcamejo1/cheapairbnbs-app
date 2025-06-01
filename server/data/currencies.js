@@ -31,11 +31,17 @@ export const CURRENCIES = {
   HKD: 0.128, // Hong Kong Dollar (Hong Kong)
   SGD: 0.74, // Singapore Dollar (Singapore)
   THB: 0.029, // Thai Baht (Thailand)
+  TWD: 0.0305, // Taiwan Dollar (Taiwan) - 1 USD = 32.755 TWD as of Dec 31, 2024
+  CNY: 0.137, // Chinese Yuan (China) - 1 USD = 7.299 CNY as of Dec 31, 2024
 
   // South American currencies
   ARS: 0.001, // Argentine Peso (Argentina)
   BRL: 0.167, // Brazilian Real (Brazil)
   MXN: 0.049, // Mexican Peso (Mexico)
+  CLP: 0.001007, // Chilean Peso (Chile) - 1 USD = 992.6 CLP as of Dec 31, 2024
+
+  // Central American currencies
+  BZD: 0.5, // Belize Dollar (Belize) - 1 USD = 2.0 BZD as of Dec 31, 2024
 
   // Other currencies
   TRY: 0.029, // Turkish Lira (Turkey)

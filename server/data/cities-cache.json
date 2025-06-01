@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "lastUpdated": "2025-06-01T03:51:47.812Z",
-  "citiesCount": 62,
+  "lastUpdated": "2025-06-01T22:03:11.292Z",
+  "citiesCount": 120,
   "cities": [
     {
       "id": "malta",
@@ -1677,6 +1677,1572 @@
         "downloadedAt": "2025-05-31T19:56:16.506Z",
         "fileSize": 5150480,
         "filename": "geneva.csv"
+      }
+    },
+    {
+      "id": "dublin",
+      "cityName": "Dublin",
+      "country": "Ireland",
+      "region": "Dublin",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 170.53,
+      "averagePrice": 185.88,
+      "totalListings": 5138,
+      "priceBreakdown": {
+        "entirePlace": 251.92,
+        "privateRoom": 106.57,
+        "sharedRoom": 56.49
+      },
+      "lastUpdated": "2025-06-01T21:59:38.746Z",
+      "scrapedDate": "2025-03-18",
+      "sourceUrl": "https://data.insideairbnb.com/ireland/leinster/dublin/2025-03-06/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:59:25.946Z",
+        "fileSize": 13356901,
+        "filename": "dublin.csv"
+      }
+    },
+    {
+      "id": "rotterdam",
+      "cityName": "Rotterdam",
+      "country": "Netherlands",
+      "region": "South Holland",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 139.21,
+      "averagePrice": 151.74,
+      "totalListings": 820,
+      "priceBreakdown": {
+        "entirePlace": 175.76,
+        "privateRoom": 89.07,
+        "sharedRoom": 34.88
+      },
+      "lastUpdated": "2025-06-01T21:59:38.827Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/the-netherlands/south-holland/rotterdam/2025-03-17/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:59:26.599Z",
+        "fileSize": 2703762,
+        "filename": "rotterdam.csv"
+      }
+    },
+    {
+      "id": "the-hague",
+      "cityName": "The Hague",
+      "country": "Netherlands",
+      "region": "South Holland",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 168.91,
+      "averagePrice": 184.11,
+      "totalListings": 1000,
+      "priceBreakdown": {
+        "entirePlace": 203.55,
+        "privateRoom": 99.3,
+        "sharedRoom": 68.67
+      },
+      "lastUpdated": "2025-06-01T21:59:38.920Z",
+      "scrapedDate": "2025-03-18",
+      "sourceUrl": "https://data.insideairbnb.com/the-netherlands/south-holland/the-hague/2025-03-18/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:59:27.265Z",
+        "fileSize": 3211512,
+        "filename": "the-hague.csv"
+      }
+    },
+    {
+      "id": "ghent",
+      "cityName": "Ghent",
+      "country": "Belgium",
+      "region": "Flemish Region",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 110.54,
+      "averagePrice": 120.49,
+      "totalListings": 1129,
+      "priceBreakdown": {
+        "entirePlace": 135.18,
+        "privateRoom": 84.12,
+        "sharedRoom": 37.06
+      },
+      "lastUpdated": "2025-06-01T21:59:38.993Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/belgium/vlg/ghent/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:57:57.970Z",
+        "fileSize": 2895223,
+        "filename": "ghent.csv"
+      }
+    },
+    {
+      "id": "jersey-city",
+      "cityName": "Jersey City",
+      "country": "United States",
+      "region": "New Jersey",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 142.28,
+      "averagePrice": 142.28,
+      "totalListings": 1520,
+      "priceBreakdown": {
+        "entirePlace": 183.71,
+        "privateRoom": 65.7,
+        "sharedRoom": 93.33
+      },
+      "lastUpdated": "2025-06-01T21:59:39.098Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/nj/jersey-city/2025-03-17/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:57:58.757Z",
+        "fileSize": 4508380,
+        "filename": "jersey-city.csv"
+      }
+    },
+    {
+      "id": "newark",
+      "cityName": "Newark",
+      "country": "United States",
+      "region": "New Jersey",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 109.8,
+      "averagePrice": 109.8,
+      "totalListings": 1644,
+      "priceBreakdown": {
+        "entirePlace": 163.63,
+        "privateRoom": 57.55,
+        "sharedRoom": 32.71
+      },
+      "lastUpdated": "2025-06-01T21:59:39.203Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/nj/newark/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:57:59.471Z",
+        "fileSize": 4261880,
+        "filename": "newark.csv"
+      }
+    },
+    {
+      "id": "rhode-island",
+      "cityName": "Rhode Island",
+      "country": "United States",
+      "region": "Rhode Island",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 281.14,
+      "averagePrice": 281.14,
+      "totalListings": 4559,
+      "priceBreakdown": {
+        "entirePlace": 306.71,
+        "privateRoom": 141.71,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:39.560Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ri/rhode-island/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:00.425Z",
+        "fileSize": 13396829,
+        "filename": "rhode-island.csv"
+      }
+    },
+    {
+      "id": "oakland",
+      "cityName": "Oakland",
+      "country": "United States",
+      "region": "California",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 137.59,
+      "averagePrice": 137.59,
+      "totalListings": 1996,
+      "priceBreakdown": {
+        "entirePlace": 156.21,
+        "privateRoom": 78.49,
+        "sharedRoom": 35.92
+      },
+      "lastUpdated": "2025-06-01T21:59:39.708Z",
+      "scrapedDate": "2025-03-16",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ca/oakland/2025-03-16/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:01.309Z",
+        "fileSize": 5809456,
+        "filename": "oakland.csv"
+      }
+    },
+    {
+      "id": "hawaii",
+      "cityName": "Hawaii",
+      "country": "United States",
+      "region": "Hawaii",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 314.82,
+      "averagePrice": 314.82,
+      "totalListings": 29317,
+      "priceBreakdown": {
+        "entirePlace": 315.24,
+        "privateRoom": 285.62,
+        "sharedRoom": 112
+      },
+      "lastUpdated": "2025-06-01T21:59:42.078Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/hi/hawaii/2025-03-06/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:03.483Z",
+        "fileSize": 91408823,
+        "filename": "hawaii.csv"
+      }
+    },
+    {
+      "id": "pacific-grove",
+      "cityName": "Pacific Grove",
+      "country": "United States",
+      "region": "California",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 300.83,
+      "averagePrice": 300.83,
+      "totalListings": 242,
+      "priceBreakdown": {
+        "entirePlace": 301.62,
+        "privateRoom": 331.29,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:42.095Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ca/pacific-grove/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:04.250Z",
+        "fileSize": 695105,
+        "filename": "pacific-grove.csv"
+      }
+    },
+    {
+      "id": "pays-basque",
+      "cityName": "Pays Basque",
+      "country": "France",
+      "region": "Pays Basque",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 147.16,
+      "averagePrice": 160.4,
+      "totalListings": 9712,
+      "priceBreakdown": {
+        "entirePlace": 169.29,
+        "privateRoom": 85.97,
+        "sharedRoom": 42.18
+      },
+      "lastUpdated": "2025-06-01T21:59:42.711Z",
+      "scrapedDate": "2025-03-08",
+      "sourceUrl": "https://data.insideairbnb.com/france/pyr%C3%A9n%C3%A9es-atlantiques/pays-basque/2025-03-08/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:05.722Z",
+        "fileSize": 24534721,
+        "filename": "pays-basque.csv"
+      }
+    },
+    {
+      "id": "bristol",
+      "cityName": "Bristol",
+      "country": "United Kingdom",
+      "region": "England",
+      "currency": "GBP",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 106.63,
+      "averagePrice": 135.42,
+      "totalListings": 2116,
+      "priceBreakdown": {
+        "entirePlace": 162.43,
+        "privateRoom": 64.81,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:42.889Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/united-kingdom/england/bristol/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:06.562Z",
+        "fileSize": 6411186,
+        "filename": "bristol.csv"
+      }
+    },
+    {
+      "id": "venice",
+      "cityName": "Venice",
+      "country": "Italy",
+      "region": "Venice",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 166.28,
+      "averagePrice": 181.25,
+      "totalListings": 6903,
+      "priceBreakdown": {
+        "entirePlace": 195.63,
+        "privateRoom": 122.03,
+        "sharedRoom": 30.67
+      },
+      "lastUpdated": "2025-06-01T21:59:43.330Z",
+      "scrapedDate": "2025-03-02",
+      "sourceUrl": "https://data.insideairbnb.com/italy/veneto/venice/2025-03-02/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:07.726Z",
+        "fileSize": 17943566,
+        "filename": "venice.csv"
+      }
+    },
+    {
+      "id": "naples",
+      "cityName": "Naples",
+      "country": "Italy",
+      "region": "Campania",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 94.76,
+      "averagePrice": 103.29,
+      "totalListings": 9205,
+      "priceBreakdown": {
+        "entirePlace": 108.81,
+        "privateRoom": 93.16,
+        "sharedRoom": 32.21
+      },
+      "lastUpdated": "2025-06-01T21:59:43.899Z",
+      "scrapedDate": "2025-03-13",
+      "sourceUrl": "https://data.insideairbnb.com/italy/campania/naples/2025-03-13/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:08.803Z",
+        "fileSize": 21900526,
+        "filename": "naples.csv"
+      }
+    },
+    {
+      "id": "trentino",
+      "cityName": "Trentino",
+      "country": "Italy",
+      "region": "Trentino",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 135.08,
+      "averagePrice": 147.24,
+      "totalListings": 7080,
+      "priceBreakdown": {
+        "entirePlace": 148.98,
+        "privateRoom": 133.05,
+        "sharedRoom": 64.31
+      },
+      "lastUpdated": "2025-06-01T21:59:44.336Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/italy/trentino-alto-adige-s%C3%BCdtirol/trentino/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:09.816Z",
+        "fileSize": 17600464,
+        "filename": "trentino.csv"
+      }
+    },
+    {
+      "id": "bergamo",
+      "cityName": "Bergamo",
+      "country": "Italy",
+      "region": "Lombardy",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 101.5,
+      "averagePrice": 110.64,
+      "totalListings": 3223,
+      "priceBreakdown": {
+        "entirePlace": 115.23,
+        "privateRoom": 86.34,
+        "sharedRoom": 42.15
+      },
+      "lastUpdated": "2025-06-01T21:59:44.703Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/italy/lombardia/bergamo/2025-03-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:10.654Z",
+        "fileSize": 7607933,
+        "filename": "bergamo.csv"
+      }
+    },
+    {
+      "id": "bologna",
+      "cityName": "Bologna",
+      "country": "Italy",
+      "region": "Emilia-Romagna",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 202.48,
+      "averagePrice": 220.7,
+      "totalListings": 3923,
+      "priceBreakdown": {
+        "entirePlace": 232.51,
+        "privateRoom": 171.03,
+        "sharedRoom": 53.22
+      },
+      "lastUpdated": "2025-06-01T21:59:44.958Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/italy/emilia-romagna/bologna/2025-03-15/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:11.590Z",
+        "fileSize": 10106197,
+        "filename": "bologna.csv"
+      }
+    },
+    {
+      "id": "riga",
+      "cityName": "Riga",
+      "country": "Latvia",
+      "region": "Riga",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 62.6,
+      "averagePrice": 68.23,
+      "totalListings": 2557,
+      "priceBreakdown": {
+        "entirePlace": 69.07,
+        "privateRoom": 45.95,
+        "sharedRoom": 22
+      },
+      "lastUpdated": "2025-06-01T21:59:45.118Z",
+      "scrapedDate": "2025-03-26",
+      "sourceUrl": "https://data.insideairbnb.com/latvia/riga/riga/2025-03-26/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:12.268Z",
+        "fileSize": 6314005,
+        "filename": "riga.csv"
+      }
+    },
+    {
+      "id": "valencia",
+      "cityName": "Valencia",
+      "country": "Spain",
+      "region": "Valencia",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 129.16,
+      "averagePrice": 140.78,
+      "totalListings": 8074,
+      "priceBreakdown": {
+        "entirePlace": 166.61,
+        "privateRoom": 70.74,
+        "sharedRoom": 48.51
+      },
+      "lastUpdated": "2025-06-01T21:59:45.607Z",
+      "scrapedDate": "2025-03-15",
+      "sourceUrl": "https://data.insideairbnb.com/spain/vc/valencia/2025-03-15/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:13.281Z",
+        "fileSize": 19128132,
+        "filename": "valencia.csv"
+      }
+    },
+    {
+      "id": "sevilla",
+      "cityName": "Sevilla",
+      "country": "Spain",
+      "region": "Andalusia",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 139.11,
+      "averagePrice": 151.63,
+      "totalListings": 7454,
+      "priceBreakdown": {
+        "entirePlace": 160.42,
+        "privateRoom": 95.6,
+        "sharedRoom": 47.42
+      },
+      "lastUpdated": "2025-06-01T21:59:46.124Z",
+      "scrapedDate": "2025-03-26",
+      "sourceUrl": "https://data.insideairbnb.com/spain/andaluc%C3%ADa/sevilla/2025-03-26/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:14.979Z",
+        "fileSize": 19544349,
+        "filename": "sevilla.csv"
+      }
+    },
+    {
+      "id": "mallorca",
+      "cityName": "Mallorca",
+      "country": "Spain",
+      "region": "Balearic Islands",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 239.21,
+      "averagePrice": 260.74,
+      "totalListings": 13015,
+      "priceBreakdown": {
+        "entirePlace": 270.04,
+        "privateRoom": 151.64,
+        "sharedRoom": 520.48
+      },
+      "lastUpdated": "2025-06-01T21:59:47.102Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/spain/islas-baleares/mallorca/2025-03-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:16.317Z",
+        "fileSize": 40079642,
+        "filename": "mallorca.csv"
+      }
+    },
+    {
+      "id": "menorca",
+      "cityName": "Menorca",
+      "country": "Spain",
+      "region": "Balearic Islands",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 229.45,
+      "averagePrice": 250.1,
+      "totalListings": 3219,
+      "priceBreakdown": {
+        "entirePlace": 256.1,
+        "privateRoom": 136.9,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:47.316Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/spain/islas-baleares/menorca/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:17.194Z",
+        "fileSize": 9045193,
+        "filename": "menorca.csv"
+      }
+    },
+    {
+      "id": "girona",
+      "cityName": "Girona",
+      "country": "Spain",
+      "region": "Catalonia",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 169.57,
+      "averagePrice": 184.83,
+      "totalListings": 18832,
+      "priceBreakdown": {
+        "entirePlace": 187.91,
+        "privateRoom": 131.82,
+        "sharedRoom": 38.15
+      },
+      "lastUpdated": "2025-06-01T21:59:48.517Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/spain/catalonia/girona/2025-03-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:18.714Z",
+        "fileSize": 47866712,
+        "filename": "girona.csv"
+      }
+    },
+    {
+      "id": "euskadi",
+      "cityName": "Euskadi",
+      "country": "Spain",
+      "region": "Euskadi",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 141.56,
+      "averagePrice": 154.3,
+      "totalListings": 5918,
+      "priceBreakdown": {
+        "entirePlace": 177.36,
+        "privateRoom": 91.41,
+        "sharedRoom": 34.42
+      },
+      "lastUpdated": "2025-06-01T21:59:48.887Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/spain/pv/euskadi/2025-03-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:19.770Z",
+        "fileSize": 14745585,
+        "filename": "euskadi.csv"
+      }
+    },
+    {
+      "id": "thessaloniki",
+      "cityName": "Thessaloniki",
+      "country": "Greece",
+      "region": "Thessaloniki",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 67.01,
+      "averagePrice": 73.04,
+      "totalListings": 4405,
+      "priceBreakdown": {
+        "entirePlace": 73.31,
+        "privateRoom": 62.5,
+        "sharedRoom": 89.38
+      },
+      "lastUpdated": "2025-06-01T21:59:49.152Z",
+      "scrapedDate": "2025-03-18",
+      "sourceUrl": "https://data.insideairbnb.com/greece/central-macedonia/thessaloniki/2025-03-18/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:20.769Z",
+        "fileSize": 10661687,
+        "filename": "thessaloniki.csv"
+      }
+    },
+    {
+      "id": "south-aegean",
+      "cityName": "South Aegean",
+      "country": "Greece",
+      "region": "South Aegean",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 205.18,
+      "averagePrice": 223.65,
+      "totalListings": 27755,
+      "priceBreakdown": {
+        "entirePlace": 227.35,
+        "privateRoom": 201.81,
+        "sharedRoom": 49.05
+      },
+      "lastUpdated": "2025-06-01T21:59:51.141Z",
+      "scrapedDate": "2025-03-16",
+      "sourceUrl": "https://data.insideairbnb.com/greece/south-aegean/south-aegean/2025-03-16/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:22.656Z",
+        "fileSize": 77635544,
+        "filename": "south-aegean.csv"
+      }
+    },
+    {
+      "id": "crete",
+      "cityName": "Crete",
+      "country": "Greece",
+      "region": "Crete",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 149.25,
+      "averagePrice": 162.68,
+      "totalListings": 22614,
+      "priceBreakdown": {
+        "entirePlace": 166.28,
+        "privateRoom": 124.35,
+        "sharedRoom": 32.58
+      },
+      "lastUpdated": "2025-06-01T21:59:52.773Z",
+      "scrapedDate": "2025-03-23",
+      "sourceUrl": "https://data.insideairbnb.com/greece/crete/crete/2025-03-23/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:24.394Z",
+        "fileSize": 68908775,
+        "filename": "crete.csv"
+      }
+    },
+    {
+      "id": "sicily",
+      "cityName": "Sicily",
+      "country": "Italy",
+      "region": "Sicily",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 110.85,
+      "averagePrice": 120.83,
+      "totalListings": 46092,
+      "priceBreakdown": {
+        "entirePlace": 127.54,
+        "privateRoom": 91.46,
+        "sharedRoom": 46.1
+      },
+      "lastUpdated": "2025-06-01T21:59:55.547Z",
+      "scrapedDate": "2025-03-26",
+      "sourceUrl": "https://data.insideairbnb.com/italy/sicilia/sicily/2025-03-26/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:26.825Z",
+        "fileSize": 110808314,
+        "filename": "sicily.csv"
+      }
+    },
+    {
+      "id": "puglia",
+      "cityName": "Puglia",
+      "country": "Italy",
+      "region": "Puglia",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 129.65,
+      "averagePrice": 141.32,
+      "totalListings": 37608,
+      "priceBreakdown": {
+        "entirePlace": 147.44,
+        "privateRoom": 113.05,
+        "sharedRoom": 66.17
+      },
+      "lastUpdated": "2025-06-01T21:59:57.866Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/italy/puglia/puglia/2025-03-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:28.892Z",
+        "fileSize": 89907481,
+        "filename": "puglia.csv"
+      }
+    },
+    {
+      "id": "bordeaux",
+      "cityName": "Bordeaux",
+      "country": "France",
+      "region": "Nouvelle-Aquitaine",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 105.86,
+      "averagePrice": 115.39,
+      "totalListings": 7296,
+      "priceBreakdown": {
+        "entirePlace": 132.04,
+        "privateRoom": 60.39,
+        "sharedRoom": 38.92
+      },
+      "lastUpdated": "2025-06-01T21:59:58.474Z",
+      "scrapedDate": "2025-03-08",
+      "sourceUrl": "https://data.insideairbnb.com/france/nouvelle-aquitaine/bordeaux/2025-03-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:30.008Z",
+        "fileSize": 23306581,
+        "filename": "bordeaux.csv"
+      }
+    },
+    {
+      "id": "twin-cities",
+      "cityName": "Twin Cities",
+      "country": "United States",
+      "region": "Minnesota",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 160.24,
+      "averagePrice": 160.24,
+      "totalListings": 4582,
+      "priceBreakdown": {
+        "entirePlace": 181.77,
+        "privateRoom": 77.9,
+        "sharedRoom": 45.2
+      },
+      "lastUpdated": "2025-06-01T21:59:58.802Z",
+      "scrapedDate": "2025-03-16",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/mn/twin-cities-msa/2025-03-16/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:30.974Z",
+        "fileSize": 13729941,
+        "filename": "twin-cities.csv"
+      }
+    },
+    {
+      "id": "rochester",
+      "cityName": "Rochester",
+      "country": "United States",
+      "region": "New York",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 104.84,
+      "averagePrice": 104.84,
+      "totalListings": 987,
+      "priceBreakdown": {
+        "entirePlace": 132.44,
+        "privateRoom": 51.6,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:58.867Z",
+      "scrapedDate": "2025-03-26",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ny/rochester/2025-04-21/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:31.611Z",
+        "fileSize": 2641132,
+        "filename": "rochester.csv"
+      }
+    },
+    {
+      "id": "cambridge",
+      "cityName": "Cambridge",
+      "country": "United States",
+      "region": "Massachusetts",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 196.6,
+      "averagePrice": 196.6,
+      "totalListings": 1087,
+      "priceBreakdown": {
+        "entirePlace": 258.56,
+        "privateRoom": 103.75,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:58.969Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ma/cambridge/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:32.428Z",
+        "fileSize": 3401009,
+        "filename": "cambridge.csv"
+      }
+    },
+    {
+      "id": "dallas",
+      "cityName": "Dallas",
+      "country": "United States",
+      "region": "Texas",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 155.3,
+      "averagePrice": 155.3,
+      "totalListings": 4894,
+      "priceBreakdown": {
+        "entirePlace": 164.36,
+        "privateRoom": 76.64,
+        "sharedRoom": 24.79
+      },
+      "lastUpdated": "2025-06-01T21:59:59.334Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/tx/dallas/2025-04-16/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:33.506Z",
+        "fileSize": 13952941,
+        "filename": "dallas.csv"
+      }
+    },
+    {
+      "id": "fort-worth",
+      "cityName": "Fort Worth",
+      "country": "United States",
+      "region": "Texas",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 138.43,
+      "averagePrice": 138.43,
+      "totalListings": 1755,
+      "priceBreakdown": {
+        "entirePlace": 159.93,
+        "privateRoom": 60.98,
+        "sharedRoom": 24.71
+      },
+      "lastUpdated": "2025-06-01T21:59:59.454Z",
+      "scrapedDate": "2025-02-02",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/tx/fort-worth/2025-03-06/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:34.309Z",
+        "fileSize": 5017017,
+        "filename": "fort-worth.csv"
+      }
+    },
+    {
+      "id": "bozeman",
+      "cityName": "Bozeman",
+      "country": "United States",
+      "region": "Montana",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 181.59,
+      "averagePrice": 181.59,
+      "totalListings": 527,
+      "priceBreakdown": {
+        "entirePlace": 189.74,
+        "privateRoom": 103.33,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:59.504Z",
+      "scrapedDate": "2025-03-26",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/mt/bozeman/2025-04-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:35.087Z",
+        "fileSize": 1497492,
+        "filename": "bozeman.csv"
+      }
+    },
+    {
+      "id": "salem",
+      "cityName": "Salem",
+      "country": "United States",
+      "region": "Oregon",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 132.37,
+      "averagePrice": 132.37,
+      "totalListings": 289,
+      "priceBreakdown": {
+        "entirePlace": 147.86,
+        "privateRoom": 60.29,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T21:59:59.528Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/or/salem-or/2025-03-17/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:35.861Z",
+        "fileSize": 907711,
+        "filename": "salem.csv"
+      }
+    },
+    {
+      "id": "san-mateo-county",
+      "cityName": "San Mateo County",
+      "country": "United States",
+      "region": "California",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 202.87,
+      "averagePrice": 202.87,
+      "totalListings": 2830,
+      "priceBreakdown": {
+        "entirePlace": 243.81,
+        "privateRoom": 100.75,
+        "sharedRoom": 30.67
+      },
+      "lastUpdated": "2025-06-01T21:59:59.738Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ca/san-mateo-county/2025-03-17/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:36.719Z",
+        "fileSize": 8526917,
+        "filename": "san-mateo-county.csv"
+      }
+    },
+    {
+      "id": "santa-clara-county",
+      "cityName": "Santa Clara County",
+      "country": "United States",
+      "region": "California",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 164.15,
+      "averagePrice": 164.15,
+      "totalListings": 5193,
+      "priceBreakdown": {
+        "entirePlace": 211.25,
+        "privateRoom": 83.35,
+        "sharedRoom": 44.02
+      },
+      "lastUpdated": "2025-06-01T22:00:00.129Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ca/santa-clara-county/2025-03-17/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:37.725Z",
+        "fileSize": 16300709,
+        "filename": "santa-clara-county.csv"
+      }
+    },
+    {
+      "id": "santa-cruz-county",
+      "cityName": "Santa Cruz County",
+      "country": "United States",
+      "region": "California",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 287.61,
+      "averagePrice": 287.61,
+      "totalListings": 1483,
+      "priceBreakdown": {
+        "entirePlace": 301.37,
+        "privateRoom": 155.57,
+        "sharedRoom": 42
+      },
+      "lastUpdated": "2025-06-01T22:00:00.233Z",
+      "scrapedDate": "2025-03-17",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/ca/santa-cruz-county/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:38.515Z",
+        "fileSize": 4436847,
+        "filename": "santa-cruz-county.csv"
+      }
+    },
+    {
+      "id": "columbus",
+      "cityName": "Columbus",
+      "country": "United States",
+      "region": "Ohio",
+      "currency": "USD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 119.17,
+      "averagePrice": 119.17,
+      "totalListings": 2632,
+      "priceBreakdown": {
+        "entirePlace": 128.17,
+        "privateRoom": 65.28,
+        "sharedRoom": 35
+      },
+      "lastUpdated": "2025-06-01T22:00:00.415Z",
+      "scrapedDate": "2025-03-19",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/oh/columbus/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:39.414Z",
+        "fileSize": 7743031,
+        "filename": "columbus.csv"
+      }
+    },
+    {
+      "id": "victoria",
+      "cityName": "Victoria",
+      "country": "Canada",
+      "region": "British Columbia",
+      "currency": "CAD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 201.06,
+      "averagePrice": 146.77,
+      "totalListings": 2679,
+      "priceBreakdown": {
+        "entirePlace": 155.14,
+        "privateRoom": 95.54,
+        "sharedRoom": 47.45
+      },
+      "lastUpdated": "2025-06-01T22:00:00.634Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/canada/bc/victoria/2025-04-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:40.318Z",
+        "fileSize": 9076996,
+        "filename": "victoria.csv"
+      }
+    },
+    {
+      "id": "quebec-city",
+      "cityName": "Quebec City",
+      "country": "Canada",
+      "region": "Quebec",
+      "currency": "CAD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 140.8,
+      "averagePrice": 102.78,
+      "totalListings": 2015,
+      "priceBreakdown": {
+        "entirePlace": 110.11,
+        "privateRoom": 59.83,
+        "sharedRoom": 29.76
+      },
+      "lastUpdated": "2025-06-01T22:00:00.771Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/canada/qc/quebec-city/2025-04-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:41.141Z",
+        "fileSize": 5626139,
+        "filename": "quebec-city.csv"
+      }
+    },
+    {
+      "id": "ottawa",
+      "cityName": "Ottawa",
+      "country": "Canada",
+      "region": "Ontario",
+      "currency": "CAD",
+      "continents": [
+        "north america"
+      ],
+      "localAveragePrice": 128.62,
+      "averagePrice": 93.89,
+      "totalListings": 2532,
+      "priceBreakdown": {
+        "entirePlace": 121.71,
+        "privateRoom": 51.12,
+        "sharedRoom": 38.69
+      },
+      "lastUpdated": "2025-06-01T22:00:00.932Z",
+      "scrapedDate": "2025-03-11",
+      "sourceUrl": "https://data.insideairbnb.com/canada/on/ottawa/2025-03-11/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:41.971Z",
+        "fileSize": 6611698,
+        "filename": "ottawa.csv"
+      }
+    },
+    {
+      "id": "western-australia",
+      "cityName": "Western Australia",
+      "country": "Australia",
+      "region": "Western Australia",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 267.51,
+      "averagePrice": 173.88,
+      "totalListings": 10530,
+      "priceBreakdown": {
+        "entirePlace": 191.49,
+        "privateRoom": 79.48,
+        "sharedRoom": 79.74
+      },
+      "lastUpdated": "2025-06-01T22:00:01.669Z",
+      "scrapedDate": "2025-03-18",
+      "sourceUrl": "https://data.insideairbnb.com/australia/wa/western-australia/2025-03-18/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:43.210Z",
+        "fileSize": 30868071,
+        "filename": "western-australia.csv"
+      }
+    },
+    {
+      "id": "tasmania",
+      "cityName": "Tasmania",
+      "country": "Australia",
+      "region": "Tasmania",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 250.39,
+      "averagePrice": 162.75,
+      "totalListings": 5620,
+      "priceBreakdown": {
+        "entirePlace": 168.07,
+        "privateRoom": 111.43,
+        "sharedRoom": 31.85
+      },
+      "lastUpdated": "2025-06-01T22:00:02.067Z",
+      "scrapedDate": "2025-03-02",
+      "sourceUrl": "https://data.insideairbnb.com/australia/tas/tasmania/2025-03-02/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:44.251Z",
+        "fileSize": 17208337,
+        "filename": "tasmania.csv"
+      }
+    },
+    {
+      "id": "northern-rivers",
+      "cityName": "Northern Rivers",
+      "country": "Australia",
+      "region": "New South Wales",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 390.9,
+      "averagePrice": 254.09,
+      "totalListings": 5343,
+      "priceBreakdown": {
+        "entirePlace": 266.13,
+        "privateRoom": 133.92,
+        "sharedRoom": 49.61
+      },
+      "lastUpdated": "2025-06-01T22:00:02.470Z",
+      "scrapedDate": "2025-03-11",
+      "sourceUrl": "https://data.insideairbnb.com/australia/nsw/northern-rivers/2025-03-11/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:45.142Z",
+        "fileSize": 15336929,
+        "filename": "northern-rivers.csv"
+      }
+    },
+    {
+      "id": "brisbane",
+      "cityName": "Brisbane",
+      "country": "Australia",
+      "region": "Queensland",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 225.73,
+      "averagePrice": 146.72,
+      "totalListings": 4917,
+      "priceBreakdown": {
+        "entirePlace": 169.93,
+        "privateRoom": 72.96,
+        "sharedRoom": 46.59
+      },
+      "lastUpdated": "2025-06-01T22:00:02.886Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/australia/qld/brisbane/2025-05-03/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:46.132Z",
+        "fileSize": 14090565,
+        "filename": "brisbane.csv"
+      }
+    },
+    {
+      "id": "sunshine-coast",
+      "cityName": "Sunshine Coast",
+      "country": "Australia",
+      "region": "Queensland",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 343.12,
+      "averagePrice": 223.03,
+      "totalListings": 6287,
+      "priceBreakdown": {
+        "entirePlace": 231,
+        "privateRoom": 105.48,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T22:00:03.351Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/australia/qld/sunshine-coast/2025-04-30/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:47.177Z",
+        "fileSize": 18823541,
+        "filename": "sunshine-coast.csv"
+      }
+    },
+    {
+      "id": "barossa-valley",
+      "cityName": "Barossa Valley",
+      "country": "Australia",
+      "region": "South Australia",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 360.12,
+      "averagePrice": 234.08,
+      "totalListings": 319,
+      "priceBreakdown": {
+        "entirePlace": 242.4,
+        "privateRoom": 170.62,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T22:00:03.374Z",
+      "scrapedDate": "2025-03-09",
+      "sourceUrl": "https://data.insideairbnb.com/australia/sa/barossa-valley/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:47.932Z",
+        "fileSize": 875739,
+        "filename": "barossa-valley.csv"
+      }
+    },
+    {
+      "id": "barwon-south-west",
+      "cityName": "Barwon South West",
+      "country": "Australia",
+      "region": "Victoria",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 348.71,
+      "averagePrice": 226.66,
+      "totalListings": 6280,
+      "priceBreakdown": {
+        "entirePlace": 236.28,
+        "privateRoom": 110.74,
+        "sharedRoom": 31.2
+      },
+      "lastUpdated": "2025-06-01T22:00:03.816Z",
+      "scrapedDate": "2025-03-09",
+      "sourceUrl": "https://data.insideairbnb.com/australia/vic/barwon-south-west-vic/2025-03-21/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:49.006Z",
+        "fileSize": 17932499,
+        "filename": "barwon-south-west.csv"
+      }
+    },
+    {
+      "id": "mid-north-coast",
+      "cityName": "Mid North Coast",
+      "country": "Australia",
+      "region": "New South Wales",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 316.27,
+      "averagePrice": 205.58,
+      "totalListings": 4625,
+      "priceBreakdown": {
+        "entirePlace": 211.58,
+        "privateRoom": 109.4,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T22:00:04.120Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/australia/nsw/mid-north-coast/2025-04-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:49.997Z",
+        "fileSize": 11944482,
+        "filename": "mid-north-coast.csv"
+      }
+    },
+    {
+      "id": "mornington-peninsula",
+      "cityName": "Mornington Peninsula",
+      "country": "Australia",
+      "region": "Victoria",
+      "currency": "AUD",
+      "continents": [
+        "oceania"
+      ],
+      "localAveragePrice": 489.49,
+      "averagePrice": 318.17,
+      "totalListings": 4015,
+      "priceBreakdown": {
+        "entirePlace": 321.33,
+        "privateRoom": 168.9,
+        "sharedRoom": 0
+      },
+      "lastUpdated": "2025-06-01T22:00:04.408Z",
+      "scrapedDate": "2025-03-07",
+      "sourceUrl": "https://data.insideairbnb.com/australia/vic/mornington-peninsula/2025-03-07/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:51.131Z",
+        "fileSize": 11963637,
+        "filename": "mornington-peninsula.csv"
+      }
+    },
+    {
+      "id": "vaud",
+      "cityName": "Vaud",
+      "country": "Switzerland",
+      "region": "Vaud",
+      "currency": "CHF",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 153.42,
+      "averagePrice": 170.3,
+      "totalListings": 3854,
+      "priceBreakdown": {
+        "entirePlace": 197.38,
+        "privateRoom": 88.66,
+        "sharedRoom": 53.76
+      },
+      "lastUpdated": "2025-06-01T22:00:05.333Z",
+      "scrapedDate": "2025-03-23",
+      "sourceUrl": "https://data.insideairbnb.com/switzerland/vd/vaud/2025-05-02/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T21:58:55.281Z",
+        "fileSize": 11108281,
+        "filename": "vaud.csv"
+      }
+    },
+    {
+      "id": "malaga",
+      "cityName": "Malaga",
+      "country": "Spain",
+      "region": "Andalusia",
+      "currency": "EUR",
+      "continents": [
+        "europe"
+      ],
+      "localAveragePrice": 113.95,
+      "averagePrice": 124.21,
+      "totalListings": 8561,
+      "priceBreakdown": {
+        "entirePlace": 133.46,
+        "privateRoom": 60.92,
+        "sharedRoom": 79.1
+      },
+      "lastUpdated": "2025-06-01T22:00:21.758Z",
+      "scrapedDate": "2025-03-27",
+      "sourceUrl": "https://data.insideairbnb.com/spain/andaluc%C3%ADa/malaga/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T22:00:15.432Z",
+        "fileSize": 21705698,
+        "filename": "malaga.csv"
+      }
+    },
+    {
+      "id": "taipei",
+      "cityName": "Taipei",
+      "country": "Taiwan",
+      "region": "Taipei",
+      "currency": "TWD",
+      "continents": [
+        "asia"
+      ],
+      "localAveragePrice": 2734.97,
+      "averagePrice": 83.42,
+      "totalListings": 5282,
+      "priceBreakdown": {
+        "entirePlace": 94.74,
+        "privateRoom": 52.84,
+        "sharedRoom": 30.5
+      },
+      "lastUpdated": "2025-06-01T22:02:49.203Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/taiwan/northern-taiwan/taipei/2025-03-28/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T22:00:16.827Z",
+        "fileSize": 14297012,
+        "filename": "taipei.csv"
+      }
+    },
+    {
+      "id": "santiago",
+      "cityName": "Santiago",
+      "country": "Chile",
+      "region": "Santiago",
+      "currency": "CLP",
+      "continents": [
+        "south america"
+      ],
+      "localAveragePrice": 65728.74,
+      "averagePrice": 66.19,
+      "totalListings": 13036,
+      "priceBreakdown": {
+        "entirePlace": 74.4,
+        "privateRoom": 37.33,
+        "sharedRoom": 30.96
+      },
+      "lastUpdated": "2025-06-01T22:02:50.027Z",
+      "scrapedDate": "2025-03-28",
+      "sourceUrl": "https://data.insideairbnb.com/chile/rm/santiago/2024-12-27/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T22:00:18.090Z",
+        "fileSize": 28936712,
+        "filename": "santiago.csv"
+      }
+    },
+    {
+      "id": "belize",
+      "cityName": "Belize",
+      "country": "Belize",
+      "region": "Belize",
+      "currency": "BZD",
+      "continents": [
+        "latin america"
+      ],
+      "localAveragePrice": 421.94,
+      "averagePrice": 210.97,
+      "totalListings": 2809,
+      "priceBreakdown": {
+        "entirePlace": 231.69,
+        "privateRoom": 155.62,
+        "sharedRoom": 33.28
+      },
+      "lastUpdated": "2025-06-01T22:02:50.250Z",
+      "scrapedDate": "2025-03-23",
+      "sourceUrl": "https://data.insideairbnb.com/belize/bz/belize/2025-03-23/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T22:00:18.786Z",
+        "fileSize": 8059633,
+        "filename": "belize.csv"
       }
     }
   ]
