@@ -23,7 +23,11 @@
         <div class="text-center mb-12">
           <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Discover the world's most
-            <span class="text-airbnb-rausch">affordable destinations</span>
+            <span
+              class="text-airbnb-rausch transition-opacity duration-300 ease-in-out"
+              :class="{ 'opacity-0': !isVisible, 'opacity-100': isVisible }"
+              >{{ currentPhrase }}</span
+            >
           </h2>
           <p class="text-xl text-gray-600 max-w-2xl mx-auto">
             Compare average Airbnb prices across cities worldwide and find your
@@ -626,6 +630,36 @@ const roomTypeFilter = ref("averagePrice");
 const selectedContinents = ref([]);
 const showMoreFilters = ref(false);
 const stayDuration = ref(1);
+const isVisible = ref(true);
+
+// Rotating phrases for hero section
+const phrases = [
+  "affordable destinations",
+  "beautiful travel gems",
+  "budget-friendly treasures",
+  "low-cost destinations",
+];
+const currentPhrase = ref(phrases[0]);
+let phraseIndex = 0;
+
+// Set up phrase rotation with fade animation
+onMounted(() => {
+  setInterval(() => {
+    // Fade out
+    isVisible.value = false;
+
+    // Change text after fade out completes
+    setTimeout(() => {
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+      currentPhrase.value = phrases[phraseIndex];
+
+      // Fade in
+      setTimeout(() => {
+        isVisible.value = true;
+      }, 50); // Small delay to ensure text change is registered
+    }, 300); // Match the transition duration
+  }, 6000); // Change every 6 seconds
+});
 
 // Available continents for the filter
 const availableContinents = [
