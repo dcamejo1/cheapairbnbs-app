@@ -1,7 +1,7 @@
 {
   "version": "1.0",
-  "lastUpdated": "2025-05-31T19:56:23.559Z",
-  "citiesCount": 61,
+  "lastUpdated": "2025-06-01T02:33:59.733Z",
+  "citiesCount": 62,
   "cities": [
     {
       "id": "malta",
@@ -1465,6 +1465,30 @@
         "downloadedAt": "2025-05-31T19:56:16.506Z",
         "fileSize": 5150480,
         "filename": "geneva.csv"
+      }
+    },
+    {
+      "id": "broward-county",
+      "cityName": "Fort Lauderdale",
+      "country": "United States",
+      "region": "Broward County",
+      "currency": "USD",
+      "localAveragePrice": 243.47,
+      "averagePrice": 243.47,
+      "totalListings": 15490,
+      "priceBreakdown": {
+        "entirePlace": 260.34,
+        "privateRoom": 127.97,
+        "sharedRoom": 48.42
+      },
+      "lastUpdated": "2025-06-01T02:33:59.732Z",
+      "scrapedDate": "2025-02-04",
+      "sourceUrl": "https://data.insideairbnb.com/united-states/fl/broward-county/2025-03-19/data/listings.csv.gz",
+      "processedFromLocal": true,
+      "localFileInfo": {
+        "downloadedAt": "2025-06-01T02:33:20.988Z",
+        "fileSize": 45390409,
+        "filename": "broward-county.csv"
       }
     }
   ]

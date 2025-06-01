@@ -412,6 +412,15 @@ export const dataSources = [
     url: "https://data.insideairbnb.com/united-states/la/new-orleans/2025-03-02/data/listings.csv.gz",
     scrapedDate: "2025-02-04",
   },
+  {
+    id: "broward-county",
+    cityName: "Fort Lauderdale",
+    country: "United States",
+    region: "Broward County",
+    currency: "USD",
+    url: "https://data.insideairbnb.com/united-states/fl/broward-county/2025-03-19/data/listings.csv.gz",
+    scrapedDate: "2025-02-04",
+  },
 
   // Canadian destinations
   {
