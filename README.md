@@ -42,18 +42,30 @@ All data comes from [Inside Airbnb](https://insideairbnb.com/get-the-data/), a m
 
 ### API Endpoints
 
-**Local Data Processing (Recommended)**
+**Public API (Frontend Access)**
 
-- `GET /api/cities/local` - Process cities from local CSV files
-- `GET /api/cities/local?refresh=true` - Force refresh from local files
-- `POST /api/data/hardpull` - Download all CSV files locally
-- `GET /api/data/status` - Check status of local CSV files
+- `GET /api/cities/test` - Get cached city data (read-only, secure)
 
-**Traditional Remote Processing**
+**Administrative Operations (CLI Only)**
 
-- `GET /api/cities/test` - Get cached or fresh city data from remote sources
-- `GET /api/cities/test?refresh=true` - Force refresh from remote sources
-- `POST /api/data/update` - Hard refresh (clear cache + fetch all fresh data)
+All administrative operations have been moved to CLI scripts for security:
+
+```bash
+# Data Management
+node scripts/hardPull.js pull          # Download all CSV files locally
+node scripts/hardPull.js pullMissing   # Download only missing CSV files
+node scripts/hardPull.js status        # Check local file status
+node scripts/hardPull.js clear         # Clear local files
+
+# Cache Management
+node scripts/cacheManager.js status        # Show cache status
+node scripts/cacheManager.js repopulate    # Clear cache and repopulate from local CSVs
+node scripts/cacheManager.js updateMissing # Add only missing cities to cache
+node scripts/cacheManager.js clear         # Clear cache
+node scripts/cacheManager.js refresh       # Refresh cache with current data
+```
+
+**Security Note**: All administrative functions and expensive operations are intentionally **not exposed as API endpoints** to prevent unauthorized access and resource abuse in production deployments.
 
 ### Development
 
@@ -64,14 +76,34 @@ npm install
 # Start development server
 npm run dev
 
-# Download all CSV files locally (recommended first step)
+# Setup: Download all CSV files locally (recommended first step)
 node scripts/hardPull.js pull
 
 # Check local file status
 node scripts/hardPull.js status
 
-# Test data sources
-node scripts/test-sources.js
+# Populate cache from local files
+node scripts/cacheManager.js repopulate
+
+# Test the API
+curl http://localhost:3000/api/cities/test
+```
+
+### Production Deployment Workflow
+
+```bash
+# 1. Download data (one-time setup or periodic updates)
+node scripts/hardPull.js pull
+
+# 2. Process data into cache
+node scripts/cacheManager.js repopulate
+
+# 3. Deploy application (cache and local CSVs included)
+# Frontend will use GET /api/cities/test for fast cached data
+
+# 4. For updates (when needed):
+node scripts/hardPull.js pullMissing      # Get new destinations
+node scripts/cacheManager.js updateMissing # Add them to cache
 ```
 
 ### Hard Pull System
