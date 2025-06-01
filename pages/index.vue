@@ -234,7 +234,15 @@
                     </option>
                   </select>
                   <p class="text-xs text-gray-500 mt-2">
-                    Prices will be calculated for your entire stay
+                    <span v-if="stayDuration === 1">
+                      Prices show nightly rates
+                    </span>
+                    <span v-else>
+                      Prices calculated for your entire stay. Note: Longer stay
+                      prices are estimates based on nightly rates. Actual costs
+                      may be lower as most hosts offer discounts for extended
+                      bookings.
+                    </span>
                   </p>
                 </div>
               </div>
@@ -373,7 +381,24 @@
               }}
               found
             </h3>
-            <p class="text-gray-600 mt-1">Showing average nightly rates</p>
+            <p class="text-gray-600 mt-1">
+              <span v-if="stayDuration === 1">
+                Showing average nightly rates
+              </span>
+              <span v-else>
+                Showing rates for
+                {{
+                  stayDurationOptions.find(
+                    (option) => option.value === stayDuration
+                  )?.label || stayDuration + " nights"
+                }}
+                <span class="text-gray-500 text-sm block mt-1">
+                  Note: Longer stay prices are estimates based on nightly rates.
+                  Actual costs may be lower as most hosts offer discounts for
+                  extended bookings.
+                </span>
+              </span>
+            </p>
           </div>
         </div>
 
