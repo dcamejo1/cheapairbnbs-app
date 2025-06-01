@@ -114,10 +114,13 @@
                   />
                   <span>More filters</span>
                   <span
-                    v-if="selectedContinents.length > 0"
+                    v-if="selectedContinents.length > 0 || stayDuration !== 1"
                     class="bg-airbnb-rausch text-white text-xs px-2 py-1 rounded-full"
                   >
-                    {{ selectedContinents.length }}
+                    {{
+                      (selectedContinents.length > 0 ? 1 : 0) +
+                      (stayDuration !== 1 ? 1 : 0)
+                    }}
                   </span>
                 </div>
                 <Icon
@@ -207,6 +210,32 @@
                       Clear all
                     </button>
                   </div>
+                </div>
+
+                <!-- Stay Duration Filter -->
+                <div class="w-full">
+                  <label class="block text-sm font-semibold text-gray-900 mb-3">
+                    <Icon
+                      name="heroicons:calendar-days"
+                      class="w-4 h-4 inline mr-2 text-gray-400"
+                    />
+                    Length of stay
+                  </label>
+                  <select
+                    v-model="stayDuration"
+                    class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-gray-900 focus:outline-none focus:ring-2 focus:ring-airbnb-rausch focus:border-airbnb-rausch transition-all text-base"
+                  >
+                    <option
+                      v-for="option in stayDurationOptions"
+                      :key="option.value"
+                      :value="option.value"
+                    >
+                      {{ option.label }}
+                    </option>
+                  </select>
+                  <p class="text-xs text-gray-500 mt-2">
+                    Prices will be calculated for your entire stay
+                  </p>
                 </div>
               </div>
             </div>
@@ -377,11 +406,14 @@
                     ${{ getDisplayPrice(city) }}
                   </div>
                   <div class="text-gray-500 text-xs font-medium">
-                    {{
-                      roomTypeFilter === "averagePrice"
-                        ? "average per night"
-                        : getRoomTypeLabel(roomTypeFilter) + " per night"
-                    }}
+                    {{ getDisplayPriceLabel() }}
+                  </div>
+                  <!-- Per-night breakdown for longer stays -->
+                  <div
+                    v-if="getPerNightPrice(city)"
+                    class="text-gray-400 text-xs mt-1"
+                  >
+                    (${{ getPerNightPrice(city) }} per night)
                   </div>
                 </div>
               </div>
@@ -416,27 +448,63 @@
                     class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
                     <span class="text-sm text-gray-700">Entire place</span>
-                    <span class="text-sm font-semibold text-gray-900">
-                      ${{ city.priceBreakdown.entirePlace }}
-                    </span>
+                    <div class="text-right">
+                      <span class="text-sm font-semibold text-gray-900">
+                        ${{
+                          Math.round(
+                            city.priceBreakdown.entirePlace * stayDuration
+                          )
+                        }}
+                      </span>
+                      <div
+                        v-if="stayDuration > 1"
+                        class="text-xs text-gray-500"
+                      >
+                        (${{ city.priceBreakdown.entirePlace }}/night)
+                      </div>
+                    </div>
                   </div>
                   <div
                     v-if="city.priceBreakdown.privateRoom > 0"
                     class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
                     <span class="text-sm text-gray-700">Private room</span>
-                    <span class="text-sm font-semibold text-gray-900">
-                      ${{ city.priceBreakdown.privateRoom }}
-                    </span>
+                    <div class="text-right">
+                      <span class="text-sm font-semibold text-gray-900">
+                        ${{
+                          Math.round(
+                            city.priceBreakdown.privateRoom * stayDuration
+                          )
+                        }}
+                      </span>
+                      <div
+                        v-if="stayDuration > 1"
+                        class="text-xs text-gray-500"
+                      >
+                        (${{ city.priceBreakdown.privateRoom }}/night)
+                      </div>
+                    </div>
                   </div>
                   <div
                     v-if="city.priceBreakdown.sharedRoom > 0"
                     class="flex justify-between items-center py-2 px-3 bg-gray-50 rounded-lg"
                   >
                     <span class="text-sm text-gray-700">Shared room</span>
-                    <span class="text-sm font-semibold text-gray-900">
-                      ${{ city.priceBreakdown.sharedRoom }}
-                    </span>
+                    <div class="text-right">
+                      <span class="text-sm font-semibold text-gray-900">
+                        ${{
+                          Math.round(
+                            city.priceBreakdown.sharedRoom * stayDuration
+                          )
+                        }}
+                      </span>
+                      <div
+                        v-if="stayDuration > 1"
+                        class="text-xs text-gray-500"
+                      >
+                        (${{ city.priceBreakdown.sharedRoom }}/night)
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -532,6 +600,7 @@ const dataInfo = ref({});
 const roomTypeFilter = ref("averagePrice");
 const selectedContinents = ref([]);
 const showMoreFilters = ref(false);
+const stayDuration = ref(1);
 
 // Available continents for the filter
 const availableContinents = [
@@ -542,6 +611,15 @@ const availableContinents = [
   { value: "asia", label: "Asia" },
   { value: "oceania", label: "Oceania" },
   { value: "middle east", label: "Middle East" },
+];
+
+// Stay duration options
+const stayDurationOptions = [
+  { value: 1, label: "1 night", displayLabel: "per night" },
+  { value: 3, label: "3 nights", displayLabel: "for 3-night stay" },
+  { value: 7, label: "1 week", displayLabel: "per week" },
+  { value: 14, label: "2 weeks", displayLabel: "for 2-week stay" },
+  { value: 30, label: "1 month", displayLabel: "per month" },
 ];
 
 // Computed properties
@@ -573,13 +651,13 @@ const filteredCities = computed(() => {
     });
   }
 
-  // Sort by selected room type
+  // Sort by selected room type with calculated total prices
   filtered.sort((a, b) => {
     let aVal, bVal;
     let aHasData = true;
     let bHasData = true;
 
-    // Get the price based on selected room type filter
+    // Get the base price based on selected room type filter
     if (roomTypeFilter.value === "averagePrice") {
       aVal = a.averagePrice;
       bVal = b.averagePrice;
@@ -596,16 +674,20 @@ const filteredCities = computed(() => {
       bVal = bHasData ? bVal : 0;
     }
 
+    // Calculate total prices based on stay duration
+    const aTotalPrice = aHasData ? aVal * stayDuration.value : 0;
+    const bTotalPrice = bHasData ? bVal * stayDuration.value : 0;
+
     // Always put cities without data at the end
     if (!aHasData && !bHasData) return 0;
     if (!aHasData) return 1;
     if (!bHasData) return -1;
 
-    // Normal sorting for cities with data
+    // Normal sorting for cities with data using total prices
     if (sortOrder.value === "asc") {
-      return aVal - bVal;
+      return aTotalPrice - bTotalPrice;
     } else {
-      return bVal - aVal;
+      return bTotalPrice - aTotalPrice;
     }
   });
 
@@ -660,12 +742,48 @@ const toggleSortOrder = () => {
 };
 
 const getDisplayPrice = (city) => {
+  let basePrice;
   if (roomTypeFilter.value === "averagePrice") {
-    return city.averagePrice;
+    basePrice = city.averagePrice;
   } else {
-    const price = city.priceBreakdown?.[roomTypeFilter.value];
-    return price !== undefined && price > 0 ? price : "N/A";
+    basePrice = city.priceBreakdown?.[roomTypeFilter.value];
+    if (basePrice === undefined || basePrice <= 0) {
+      return "N/A";
+    }
   }
+
+  // Calculate total price based on stay duration
+  const totalPrice = basePrice * stayDuration.value;
+  return Math.round(totalPrice);
+};
+
+const getDisplayPriceLabel = () => {
+  const selectedOption = stayDurationOptions.find(
+    (option) => option.value === stayDuration.value
+  );
+  if (roomTypeFilter.value === "averagePrice") {
+    return `average ${selectedOption?.displayLabel || "per night"}`;
+  } else {
+    return `${getRoomTypeLabel(roomTypeFilter.value)} ${
+      selectedOption?.displayLabel || "per night"
+    }`;
+  }
+};
+
+const getPerNightPrice = (city) => {
+  if (stayDuration.value === 1) return null; // Don't show per-night for single night
+
+  let basePrice;
+  if (roomTypeFilter.value === "averagePrice") {
+    basePrice = city.averagePrice;
+  } else {
+    basePrice = city.priceBreakdown?.[roomTypeFilter.value];
+    if (basePrice === undefined || basePrice <= 0) {
+      return null;
+    }
+  }
+
+  return Math.round(basePrice);
 };
 
 const getRoomTypeLabel = (type) => {
@@ -689,6 +807,7 @@ const clearContinentFilter = () => {
 const clearAllFilters = () => {
   searchQuery.value = "";
   selectedContinents.value = [];
+  stayDuration.value = 1;
   showMoreFilters.value = false;
   fetchCities();
 };
