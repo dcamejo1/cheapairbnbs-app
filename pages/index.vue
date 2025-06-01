@@ -36,9 +36,12 @@
           <div
             class="bg-white rounded-3xl shadow-xl border border-gray-200 p-4 sm:p-8"
           >
-            <div class="flex flex-col gap-4 sm:gap-6">
+            <!-- Main Search Bar -->
+            <div
+              class="flex flex-col lg:flex-row gap-4 sm:gap-6 lg:items-end mb-4"
+            >
               <!-- Search Input -->
-              <div class="w-full">
+              <div class="w-full lg:flex-1">
                 <label class="block text-sm font-semibold text-gray-900 mb-2">
                   Where do you want to explore?
                 </label>
@@ -56,81 +59,7 @@
                 </div>
               </div>
 
-              <!-- Continent Filter -->
-              <div class="w-full">
-                <label class="block text-sm font-semibold text-gray-900 mb-3">
-                  Continents
-                </label>
-                <div
-                  class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
-                >
-                  <label
-                    v-for="continent in availableContinents"
-                    :key="continent.value"
-                    class="flex items-center space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 cursor-pointer transition-all"
-                    :class="{
-                      'bg-airbnb-rausch border-airbnb-rausch text-white':
-                        selectedContinents.includes(continent.value),
-                    }"
-                  >
-                    <input
-                      type="checkbox"
-                      :value="continent.value"
-                      v-model="selectedContinents"
-                      class="sr-only"
-                    />
-                    <div
-                      class="w-4 h-4 border-2 rounded flex items-center justify-center transition-all"
-                      :class="{
-                        'border-white bg-white': selectedContinents.includes(
-                          continent.value
-                        ),
-                        'border-gray-400 bg-transparent':
-                          !selectedContinents.includes(continent.value),
-                      }"
-                    >
-                      <Icon
-                        v-if="selectedContinents.includes(continent.value)"
-                        name="heroicons:check"
-                        class="w-3 h-3 text-airbnb-rausch"
-                      />
-                    </div>
-                    <span
-                      class="text-sm font-medium"
-                      :class="{
-                        'text-white': selectedContinents.includes(
-                          continent.value
-                        ),
-                        'text-gray-700': !selectedContinents.includes(
-                          continent.value
-                        ),
-                      }"
-                    >
-                      {{ continent.label }}
-                    </span>
-                  </label>
-                </div>
-                <div class="flex justify-between items-center mt-3">
-                  <p class="text-xs text-gray-500">
-                    {{
-                      selectedContinents.length === 0
-                        ? "All continents"
-                        : `${selectedContinents.length} continent${
-                            selectedContinents.length !== 1 ? "s" : ""
-                          } selected`
-                    }}
-                  </p>
-                  <button
-                    v-if="selectedContinents.length > 0"
-                    @click="clearContinentFilter"
-                    class="text-xs text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium"
-                  >
-                    Clear all
-                  </button>
-                </div>
-              </div>
-
-              <!-- Sort Options -->
+              <!-- Room Type and Sort Controls -->
               <div class="flex flex-col sm:flex-row lg:flex-row gap-3 sm:gap-4">
                 <div class="w-full sm:w-auto">
                   <label class="block text-sm font-semibold text-gray-900 mb-2">
@@ -168,6 +97,116 @@
                       class="w-5 h-5"
                     />
                   </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- More Filters Toggle -->
+            <div class="border-t border-gray-100 pt-4">
+              <button
+                @click="showMoreFilters = !showMoreFilters"
+                class="flex items-center justify-between w-full text-left py-2 px-1 text-sm font-semibold text-gray-700 hover:text-airbnb-rausch transition-colors"
+              >
+                <div class="flex items-center space-x-2">
+                  <Icon
+                    name="heroicons:adjustments-horizontal"
+                    class="w-4 h-4"
+                  />
+                  <span>More filters</span>
+                  <span
+                    v-if="selectedContinents.length > 0"
+                    class="bg-airbnb-rausch text-white text-xs px-2 py-1 rounded-full"
+                  >
+                    {{ selectedContinents.length }}
+                  </span>
+                </div>
+                <Icon
+                  :name="
+                    showMoreFilters
+                      ? 'heroicons:chevron-up'
+                      : 'heroicons:chevron-down'
+                  "
+                  class="w-4 h-4 transition-transform"
+                />
+              </button>
+
+              <!-- Expandable Filters Section -->
+              <div
+                v-show="showMoreFilters"
+                class="mt-4 space-y-4 border-t border-gray-100 pt-4"
+              >
+                <!-- Continent Filter -->
+                <div class="w-full">
+                  <label class="block text-sm font-semibold text-gray-900 mb-3">
+                    Continents
+                  </label>
+                  <div
+                    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+                  >
+                    <label
+                      v-for="continent in availableContinents"
+                      :key="continent.value"
+                      class="flex items-center space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 cursor-pointer transition-all"
+                      :class="{
+                        'bg-airbnb-rausch border-airbnb-rausch text-white':
+                          selectedContinents.includes(continent.value),
+                      }"
+                    >
+                      <input
+                        type="checkbox"
+                        :value="continent.value"
+                        v-model="selectedContinents"
+                        class="sr-only"
+                      />
+                      <div
+                        class="w-4 h-4 border-2 rounded flex items-center justify-center transition-all"
+                        :class="{
+                          'border-white bg-white': selectedContinents.includes(
+                            continent.value
+                          ),
+                          'border-gray-400 bg-transparent':
+                            !selectedContinents.includes(continent.value),
+                        }"
+                      >
+                        <Icon
+                          v-if="selectedContinents.includes(continent.value)"
+                          name="heroicons:check"
+                          class="w-3 h-3 text-airbnb-rausch"
+                        />
+                      </div>
+                      <span
+                        class="text-sm font-medium"
+                        :class="{
+                          'text-white': selectedContinents.includes(
+                            continent.value
+                          ),
+                          'text-gray-700': !selectedContinents.includes(
+                            continent.value
+                          ),
+                        }"
+                      >
+                        {{ continent.label }}
+                      </span>
+                    </label>
+                  </div>
+                  <div class="flex justify-between items-center mt-3">
+                    <p class="text-xs text-gray-500">
+                      {{
+                        selectedContinents.length === 0
+                          ? "All continents"
+                          : `${selectedContinents.length} continent${
+                              selectedContinents.length !== 1 ? "s" : ""
+                            } selected`
+                      }}
+                    </p>
+                    <button
+                      v-if="selectedContinents.length > 0"
+                      @click="clearContinentFilter"
+                      class="text-xs text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium"
+                    >
+                      Clear all
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -342,11 +381,7 @@
           Try adjusting your search criteria or filters
         </p>
         <button
-          @click="
-            searchQuery = '';
-            selectedContinents = [];
-            fetchCities();
-          "
+          @click="clearAllFilters"
           class="text-airbnb-rausch hover:text-airbnb-rausch-dark font-medium transition-colors"
         >
           Show all destinations
@@ -418,6 +453,7 @@ const sortOrder = ref("asc");
 const dataInfo = ref({});
 const roomTypeFilter = ref("averagePrice");
 const selectedContinents = ref([]);
+const showMoreFilters = ref(false);
 
 // Available continents for the filter
 const availableContinents = [
@@ -559,6 +595,14 @@ const getRoomTypeLabel = (type) => {
 
 const clearContinentFilter = () => {
   selectedContinents.value = [];
+};
+
+// Clear all filters and close dropdown
+const clearAllFilters = () => {
+  searchQuery.value = "";
+  selectedContinents.value = [];
+  showMoreFilters.value = false;
+  fetchCities();
 };
 
 // Lifecycle
