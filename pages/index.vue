@@ -13,6 +13,10 @@
               Find affordable stays worldwide
             </p>
           </div>
+          <!-- Notification Bell -->
+          <div class="flex items-center">
+            <NotificationBell />
+          </div>
         </div>
       </div>
     </header>
@@ -637,7 +641,7 @@ const phrases = [
   "affordable destinations",
   "beautiful travel gems",
   "budget-friendly treasures",
-  "low-cost destinations",
+  "low-cost locations",
 ];
 const currentPhrase = ref(phrases[0]);
 let phraseIndex = 0;
@@ -658,7 +662,7 @@ onMounted(() => {
         isVisible.value = true;
       }, 50); // Small delay to ensure text change is registered
     }, 300); // Match the transition duration
-  }, 6000); // Change every 6 seconds
+  }, 10000); // Change every 10 seconds
 });
 
 // Available continents for the filter

@@ -11,6 +11,14 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
   ],
 
+  // Runtime configuration for environment variables
+  runtimeConfig: {
+    mongodbUri: process.env.MONGODB_URI,
+    public: {
+      // Public keys exposed to client-side
+    },
+  },
+
   app: {
     head: {
       link: [
