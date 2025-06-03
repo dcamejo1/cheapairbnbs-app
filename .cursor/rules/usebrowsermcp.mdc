@@ -1,0 +1,18 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Description: Use the Browser MCP tool for automating browser tasks and testing
+
+After making a change, test it in the browser at http://localhost:3000/ using the Autobrowser MCP. Assume the server is already running
+
+- Always use the Browser MCP tool to automate browser interactions, such as navigating pages, clicking buttons, capturing screenshots, and verifying UI changes.
+
+- When asked to test or interact with the web application, prefer calling the Browser MCP tool to perform these actions automatically.
+
+- Use the Browser MCP for debugging browser logs, resolving errors, and verifying UI functionality after code changes.
+
+- Ensure that responses from the Browser MCP tool, including screenshots or logs, are incorporated into the chat context for analysis.
+
+- Follow best practices for browser automation by using the MCP tool’s capabilities instead of manual instructions or assumptions.
