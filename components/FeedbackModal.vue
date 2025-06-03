@@ -182,15 +182,15 @@
 
       <!-- Footer -->
       <div
-        class="flex justify-end gap-3 px-6 py-4 bg-gray-50 rounded-b-2xl border-t border-gray-200"
+        class="flex justify-center gap-4 px-6 py-4 bg-gray-50 rounded-b-2xl border-t border-gray-200"
       >
         <button
           @click="closeModal"
-          class="px-6 py-2 text-gray-700 hover:text-gray-900 font-medium transition-colors"
+          class="flex-1 px-6 py-3 font-medium rounded-xl transition-all"
           :class="
             success
-              ? 'bg-airbnb-rausch text-white hover:bg-airbnb-rausch/90 rounded-xl'
-              : ''
+              ? 'bg-airbnb-rausch text-white hover:bg-airbnb-rausch/90'
+              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
           "
         >
           {{ success ? "Close" : "Cancel" }}
@@ -199,7 +199,7 @@
           v-if="!success"
           @click="submitFeedback"
           :disabled="!description.trim() || submitting"
-          class="px-6 py-2 bg-airbnb-rausch text-white font-medium rounded-xl hover:bg-airbnb-rausch/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center space-x-2"
+          class="flex-1 px-6 py-3 bg-airbnb-rausch text-white font-medium rounded-xl hover:bg-airbnb-rausch/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center space-x-2"
         >
           <Icon
             v-if="submitting"
