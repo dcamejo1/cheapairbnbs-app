@@ -13,8 +13,21 @@
               Find affordable stays worldwide
             </p>
           </div>
-          <!-- Notification Bell -->
-          <div class="flex items-center">
+          <!-- Right side buttons -->
+          <div class="flex items-center space-x-3">
+            <!-- Feedback Button -->
+            <button
+              @click="showFeedbackModal = true"
+              class="flex items-center space-x-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 hover:text-airbnb-rausch font-medium rounded-2xl transition-all"
+              title="Report bugs or request features"
+            >
+              <Icon
+                name="heroicons:chat-bubble-left-ellipsis"
+                class="w-4 h-4"
+              />
+              <span class="hidden sm:inline">Feedback</span>
+            </button>
+            <!-- Notification Bell -->
             <NotificationBell />
           </div>
         </div>
@@ -607,6 +620,12 @@
         </p>
       </div>
     </main>
+
+    <!-- Feedback Modal -->
+    <FeedbackModal
+      :is-open="showFeedbackModal"
+      @close="showFeedbackModal = false"
+    />
   </div>
 </template>
 
@@ -635,6 +654,7 @@ const selectedContinents = ref([]);
 const showMoreFilters = ref(false);
 const stayDuration = ref(1);
 const isVisible = ref(true);
+const showFeedbackModal = ref(false);
 
 // Rotating phrases for hero section
 const phrases = [
