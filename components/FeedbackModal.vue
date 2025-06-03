@@ -58,27 +58,81 @@
         <div v-if="!success" class="space-y-6">
           <!-- Feedback Type Selection -->
           <div>
-            <label class="block text-sm font-medium text-gray-700 mb-3">
+            <label class="block text-sm font-semibold text-gray-900 mb-3">
               What type of feedback is this?
             </label>
-            <div class="space-y-3">
-              <label class="flex items-center cursor-pointer">
+            <div class="flex space-x-4">
+              <label
+                class="flex items-center space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 cursor-pointer transition-all"
+                :class="{
+                  'bg-airbnb-rausch border-airbnb-rausch text-white':
+                    feedbackType === 'bug',
+                }"
+              >
                 <input
-                  v-model="feedbackType"
                   type="radio"
                   value="bug"
-                  class="w-4 h-4 text-airbnb-rausch border-gray-300 focus:ring-airbnb-rausch"
-                />
-                <span class="ml-3 text-gray-900">🐛 Bug Report</span>
-              </label>
-              <label class="flex items-center cursor-pointer">
-                <input
                   v-model="feedbackType"
+                  class="sr-only"
+                />
+                <div
+                  class="w-4 h-4 border-2 rounded-full flex items-center justify-center transition-all"
+                  :class="{
+                    'border-white bg-white': feedbackType === 'bug',
+                    'border-gray-400 bg-transparent': feedbackType !== 'bug',
+                  }"
+                >
+                  <div
+                    v-if="feedbackType === 'bug'"
+                    class="w-2 h-2 bg-airbnb-rausch rounded-full"
+                  ></div>
+                </div>
+                <span
+                  class="text-sm font-medium"
+                  :class="{
+                    'text-white': feedbackType === 'bug',
+                    'text-gray-700': feedbackType !== 'bug',
+                  }"
+                >
+                  🐛 Bug Report
+                </span>
+              </label>
+
+              <label
+                class="flex items-center space-x-3 p-3 bg-gray-50 border border-gray-200 rounded-xl hover:bg-gray-100 cursor-pointer transition-all"
+                :class="{
+                  'bg-airbnb-rausch border-airbnb-rausch text-white':
+                    feedbackType === 'feature_request',
+                }"
+              >
+                <input
                   type="radio"
                   value="feature_request"
-                  class="w-4 h-4 text-airbnb-rausch border-gray-300 focus:ring-airbnb-rausch"
+                  v-model="feedbackType"
+                  class="sr-only"
                 />
-                <span class="ml-3 text-gray-900">💡 Feature Request</span>
+                <div
+                  class="w-4 h-4 border-2 rounded-full flex items-center justify-center transition-all"
+                  :class="{
+                    'border-white bg-white': feedbackType === 'feature_request',
+                    'border-gray-400 bg-transparent':
+                      feedbackType !== 'feature_request',
+                  }"
+                >
+                  <div
+                    v-if="feedbackType === 'feature_request'"
+                    class="w-2 h-2 bg-airbnb-rausch rounded-full"
+                  ></div>
+                </div>
+                <span
+                  class="text-sm font-medium"
+                  :class="{
+                    'text-white': feedbackType === 'feature_request',
+                    'text-gray-700': feedbackType !== 'feature_request',
+                  }"
+                >
+                  💡 Feature Request
+                </span>
               </label>
             </div>
           </div>
