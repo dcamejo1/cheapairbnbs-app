@@ -19,6 +19,27 @@ export default defineNuxtConfig({
     },
   },
 
+  // Basic DDoS protection and security
+  nitro: {
+    // Security headers and route rules
+    routeRules: {
+      "/**": {
+        headers: {
+          "X-Content-Type-Options": "nosniff",
+          "X-Frame-Options": "DENY",
+          "X-XSS-Protection": "1; mode=block",
+          "Referrer-Policy": "strict-origin-when-cross-origin",
+        },
+      },
+      // Rate limiting for API routes
+      "/api/**": {
+        headers: {
+          "Cache-Control": "no-cache, no-store, must-revalidate",
+        },
+      },
+    },
+  },
+
   app: {
     head: {
       link: [
