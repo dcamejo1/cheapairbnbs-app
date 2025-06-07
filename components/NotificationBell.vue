@@ -43,7 +43,7 @@
             <Icon name="heroicons:bell" class="w-8 h-8 text-airbnb-rausch" />
           </div>
           <h3 class="text-xl font-bold text-gray-900 mb-2">
-            Never miss a deal!
+            Stay updated on new places!
           </h3>
           <p class="text-gray-600 text-sm">
             Get notified when we discover new affordable destinations around the
