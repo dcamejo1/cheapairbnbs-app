@@ -135,12 +135,17 @@
                   />
                   <span>More filters</span>
                   <span
-                    v-if="selectedContinents.length > 0 || stayDuration !== 1"
+                    v-if="
+                      selectedContinents.length > 0 ||
+                      stayDuration !== 1 ||
+                      enablePriceColors
+                    "
                     class="bg-airbnb-rausch text-white text-xs px-2 py-1 rounded-full"
                   >
                     {{
                       (selectedContinents.length > 0 ? 1 : 0) +
-                      (stayDuration !== 1 ? 1 : 0)
+                      (stayDuration !== 1 ? 1 : 0) +
+                      (enablePriceColors ? 1 : 0)
                     }}
                   </span>
                 </div>
@@ -265,6 +270,77 @@
                       bookings.
                     </span>
                   </p>
+                </div>
+
+                <!-- Price Color Coding Toggle -->
+                <div class="w-full">
+                  <label class="block text-sm font-semibold text-gray-900 mb-3">
+                    <Icon
+                      name="heroicons:swatch"
+                      class="w-4 h-4 inline mr-2 text-gray-400"
+                    />
+                    Visual price indicator
+                  </label>
+                  <label
+                    class="flex items-center justify-between p-4 bg-gray-50 border border-gray-200 rounded-2xl hover:bg-gray-100 cursor-pointer transition-all"
+                  >
+                    <div>
+                      <span class="text-sm font-medium text-gray-900"
+                        >Price color coding</span
+                      >
+                      <p class="text-xs text-gray-500 mt-1">
+                        Color cards from green (cheap) to red (expensive)
+                      </p>
+                    </div>
+                    <div class="relative">
+                      <input
+                        type="checkbox"
+                        v-model="enablePriceColors"
+                        class="sr-only"
+                      />
+                      <div
+                        class="w-11 h-6 rounded-full transition-colors duration-200 ease-in-out"
+                        :class="{
+                          'bg-airbnb-rausch': enablePriceColors,
+                          'bg-gray-300': !enablePriceColors,
+                        }"
+                      >
+                        <div
+                          class="w-5 h-5 bg-white rounded-full shadow-md transform transition-transform duration-200 ease-in-out translate-y-0.5"
+                          :class="{
+                            'translate-x-5': enablePriceColors,
+                            'translate-x-0.5': !enablePriceColors,
+                          }"
+                        ></div>
+                      </div>
+                    </div>
+                  </label>
+                  <div
+                    v-if="enablePriceColors"
+                    class="mt-2 flex items-center justify-between text-xs text-gray-500"
+                  >
+                    <div class="flex items-center">
+                      <div
+                        class="w-3 h-3 rounded-full mr-1"
+                        style="background-color: hsl(120, 30%, 94%)"
+                      ></div>
+                      <span>Cheapest</span>
+                    </div>
+                    <div class="flex items-center">
+                      <div
+                        class="w-3 h-3 rounded-full mr-1"
+                        style="background-color: hsl(60, 30%, 94%)"
+                      ></div>
+                      <span>Moderate</span>
+                    </div>
+                    <div class="flex items-center">
+                      <div
+                        class="w-3 h-3 rounded-full mr-1"
+                        style="background-color: hsl(0, 30%, 94%)"
+                      ></div>
+                      <span>Most expensive</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -428,7 +504,13 @@
           <div
             v-for="city in filteredCities"
             :key="city.id"
-            class="bg-white border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer group"
+            class="border border-gray-200 rounded-2xl overflow-hidden hover:shadow-xl hover:border-gray-300 transition-all duration-300 cursor-pointer group"
+            :class="{
+              'bg-white': !enablePriceColors,
+            }"
+            :style="
+              enablePriceColors ? { backgroundColor: getPriceColor(city) } : {}
+            "
           >
             <!-- Card Content -->
             <div class="p-6">
@@ -655,6 +737,7 @@ const showMoreFilters = ref(false);
 const stayDuration = ref(1);
 const isVisible = ref(true);
 const showFeedbackModal = ref(false);
+const enablePriceColors = ref(false);
 
 // Rotating phrases for hero section
 const phrases = [
@@ -777,6 +860,32 @@ const filteredCities = computed(() => {
   return filtered;
 });
 
+const priceRange = computed(() => {
+  if (!filteredCities.value.length) return { min: 0, max: 0 };
+
+  const prices = filteredCities.value
+    .map((city) => {
+      let basePrice;
+      if (roomTypeFilter.value === "averagePrice") {
+        basePrice = city.averagePrice;
+      } else {
+        basePrice = city.priceBreakdown?.[roomTypeFilter.value];
+        if (basePrice === undefined || basePrice <= 0) {
+          return null; // Exclude cities without this room type
+        }
+      }
+      return basePrice * stayDuration.value;
+    })
+    .filter((price) => price !== null);
+
+  if (prices.length === 0) return { min: 0, max: 0 };
+
+  return {
+    min: Math.min(...prices),
+    max: Math.max(...prices),
+  };
+});
+
 // Methods
 const fetchCities = async () => {
   loading.value = true;
@@ -886,11 +995,40 @@ const clearContinentFilter = () => {
   selectedContinents.value = [];
 };
 
-// Clear all filters and close dropdown
+const getPriceColor = (city) => {
+  if (!enablePriceColors.value) return "white";
+
+  let basePrice;
+  if (roomTypeFilter.value === "averagePrice") {
+    basePrice = city.averagePrice;
+  } else {
+    basePrice = city.priceBreakdown?.[roomTypeFilter.value];
+    if (basePrice === undefined || basePrice <= 0) {
+      return "white"; // No data for this room type
+    }
+  }
+
+  const totalPrice = basePrice * stayDuration.value;
+  const { min, max } = priceRange.value;
+
+  // If all prices are the same, use neutral color
+  if (min === max) return "hsl(60, 20%, 96%)";
+
+  // Calculate position (0 = cheapest, 1 = most expensive)
+  const position = (totalPrice - min) / (max - min);
+
+  // Map position to hue: green (120°) → yellow (60°) → red (0°)
+  const hue = 120 * (1 - position);
+
+  // Use subtle colors with low saturation and high lightness
+  return `hsl(${hue}, 30%, 94%)`;
+};
+
 const clearAllFilters = () => {
   searchQuery.value = "";
   selectedContinents.value = [];
   stayDuration.value = 1;
+  enablePriceColors.value = false;
   showMoreFilters.value = false;
   fetchCities();
 };
