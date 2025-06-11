@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "sync-cache": "node scripts/syncCache.js"
+    "sync-cache": "node scripts/syncCache.js",
+    "start": "node .output/server/index.mjs"
   },
   "dependencies": {
     "@nuxt/content": "^3.5.1",
