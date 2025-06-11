@@ -737,7 +737,7 @@ const showMoreFilters = ref(false);
 const stayDuration = ref(1);
 const isVisible = ref(true);
 const showFeedbackModal = ref(false);
-const enablePriceColors = ref(false);
+const enablePriceColors = ref(true);
 
 // Rotating phrases for hero section
 const phrases = [
