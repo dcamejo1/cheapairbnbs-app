@@ -117,8 +117,7 @@
 
           <!-- Disclaimer -->
           <p class="text-xs text-gray-500 text-center">
-            We respect your privacy. Unsubscribe at any time. No spam, just
-            great deals.
+            Unsubscribe at any time
           </p>
         </form>
       </div>
